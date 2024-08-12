@@ -1,14 +1,13 @@
 // src/components/Home.js
 import React from "react";
-import Navbar from "./Navbar";
-import ImageGallery from "./ImageGallery";
-import WelcomeSection from "./WelcomeSection";
-import "../styles/Home.css"; // Optional: if you want specific styles for Home
+import "./Home.css";
+import Navbar from "../../components/Navbar";
+import ImageGallery from "../../components/ImageGallery";
+import WelcomeSection from "../../components/WelcomeSection";
 
 const Home = () => {
   return (
     <div className="App">
-      <Navbar />
       <header className="App-header">
         <h1>Image Gallery</h1>
       </header>
@@ -16,9 +15,6 @@ const Home = () => {
         <WelcomeSection />
         <ImageGallery />
       </main>
-      <footer className="App-footer">
-        &copy; 2024 Image Gallery. All rights reserved.
-      </footer>
     </div>
   );
 };

@@ -1,25 +1,24 @@
-// src/App.js
 import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar";
-import ImageGallery from "./components/ImageGallery";
-import WelcomeSection from "./components/WelcomeSection";
+import Home from "./Route/Home/Home";
 
 function App() {
   return (
-    <div className="App">
-      <Navbar />
-      <header className="App-header">
-        <h1>Image Gallery</h1>
-      </header>
-      <main className="App-main">
-        <WelcomeSection />
-        <ImageGallery />
-      </main>
+    <Router>
+      <Navbar /> {/* Ensure Navbar is rendered on all pages */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        {/* Uncomment these when the components are ready */}
+        {/* <Route path="/about" element={<About />} /> */}
+        {/* <Route path="/gallery" element={<Gallery />} /> */}
+        {/* <Route path="/contact" element={<Contact />} /> */}
+      </Routes>
       <footer className="App-footer">
         &copy; 2024 Image Gallery. All rights reserved.
       </footer>
-    </div>
+    </Router>
   );
 }
 
