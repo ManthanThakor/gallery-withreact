@@ -1,0 +1,46 @@
+/* src/styles/welcomeSection.module.css */
+.welcomeSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  width: 100%;
+  max-width: 1200px;
+  background: linear-gradient(135deg, #333, #444);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  margin-bottom: 20px;
+  animation: fadeIn 1s ease-in-out;
+}
+
+.welcomeText {
+  flex: 1;
+  padding: 20px;
+}
+
+.welcomeText h2 {
+  font-size: 2rem;
+  margin-bottom: 10px;
+  color: #f0f0f0;
+}
+
+.welcomeText p {
+  font-size: 1.25rem;
+  color: #d0d0d0;
+}
+
+.slider {
+  flex: 1;
+  max-width: 600px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
