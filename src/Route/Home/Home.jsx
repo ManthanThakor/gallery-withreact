@@ -4,6 +4,9 @@ import "./Home.css";
 import Navbar from "../../components/Navbar";
 import ImageGallery from "../../components/ImageGallery";
 import WelcomeSection from "../../components/WelcomeSection";
+import HSlider from "../../components/Hslide";
+
+// import WallpaperCard from "../../components/HomeWallpaper";
 
 const Home = () => {
   return (
@@ -14,6 +17,7 @@ const Home = () => {
       <main className="App-main">
         <WelcomeSection />
         <ImageGallery />
+        <HSlider />
       </main>
     </div>
   );
