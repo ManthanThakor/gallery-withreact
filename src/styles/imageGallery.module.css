@@ -3,7 +3,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 20px;
   width: 100%;
   max-width: 1200px;
   animation: fadeIn 1s ease-in-out;
@@ -108,6 +107,7 @@
 }
 .blurred {
   filter: blur(10px);
+  transition: filter 0.3s ease;
 }
 .eyeIcon {
   color: white;

@@ -27,6 +27,7 @@
   list-style: none;
   display: flex;
   gap: 20px;
+  padding-left: 100px;
 }
 
 .navLinks a {
