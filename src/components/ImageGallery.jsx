@@ -1,5 +1,5 @@
 // src/components/ImageGallery.js
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/imageGallery.module.css";
 import ImageCard from "./ImageCard";
 
@@ -368,10 +368,23 @@ const images = [
 
 const categories = ["All", "Cute Girl", "Anime Girl", "Hot Girl", "18+"];
 
+const shuffleArray = (array) => {
+  return array
+    .map((value) => ({ value, sort: Math.random() }))
+    .sort((a, b) => a.sort - b.sort)
+    .map(({ value }) => value);
+};
+
 const ImageGallery = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [showWarning, setShowWarning] = useState(false);
+  const [zoomedImage, setZoomedImage] = useState(null);
+  const [shuffledImages, setShuffledImages] = useState([]);
+
+  useEffect(() => {
+    setShuffledImages(shuffleArray(images));
+  }, []);
 
   const handleCategorySelect = (category) => {
     if (category === "18+") {
@@ -381,7 +394,11 @@ const ImageGallery = () => {
     }
   };
 
-  const filteredImages = images.filter(
+  const handleImageClick = (image) => {
+    setZoomedImage(image);
+  };
+
+  const filteredImages = shuffledImages.filter(
     (image) =>
       (selectedCategory === "All" || image.category === selectedCategory) &&
       image.title.toLowerCase().includes(searchTerm.toLowerCase())
@@ -413,9 +430,24 @@ const ImageGallery = () => {
 
       <div className={styles.gallery}>
         {filteredImages.map((image, index) => (
-          <ImageCard key={index} image={image} />
+          <div key={index} onClick={() => handleImageClick(image)}>
+            <ImageCard image={image} />
+          </div>
         ))}
       </div>
+
+      {zoomedImage && (
+        <div
+          className={styles.zoomOverlay}
+          onClick={() => setZoomedImage(null)}
+        >
+          <img
+            src={zoomedImage.url}
+            alt={zoomedImage.title}
+            className={styles.zoomedImage}
+          />
+        </div>
+      )}
 
       {showWarning && (
         <div className={styles.warningOverlay}>
