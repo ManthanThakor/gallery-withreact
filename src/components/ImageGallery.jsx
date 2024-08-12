@@ -2,6 +2,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "../styles/imageGallery.module.css";
 import ImageCard from "./ImageCard";
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import { VscEyeClosed } from "react-icons/vsc";
 
 const images = [
   {
@@ -381,6 +383,7 @@ const ImageGallery = () => {
   const [showWarning, setShowWarning] = useState(false);
   const [zoomedImage, setZoomedImage] = useState(null);
   const [shuffledImages, setShuffledImages] = useState([]);
+  const [blurEnabled, setBlurEnabled] = useState(true); // State to track blur
 
   useEffect(() => {
     setShuffledImages(shuffleArray(images));
@@ -398,11 +401,30 @@ const ImageGallery = () => {
     setZoomedImage(image);
   };
 
-  const filteredImages = shuffledImages.filter(
-    (image) =>
-      (selectedCategory === "All" || image.category === selectedCategory) &&
-      image.title.toLowerCase().includes(searchTerm.toLowerCase())
-  );
+  const toggleBlur = () => {
+    setBlurEnabled(!blurEnabled);
+    localStorage.setItem("blurEnabled", JSON.stringify(!blurEnabled));
+  };
+
+  useEffect(() => {
+    const savedBlurState = JSON.parse(localStorage.getItem("blurEnabled"));
+    if (savedBlurState !== null) {
+      setBlurEnabled(savedBlurState);
+    }
+  }, []);
+
+  const filteredImages = shuffledImages.filter((image) => {
+    const matchesCategory =
+      selectedCategory === "All" ||
+      selectedCategory === image.category ||
+      (selectedCategory === "All" && searchTerm && image.category === "18+");
+
+    const matchesSearch = image.title
+      .toLowerCase()
+      .includes(searchTerm.toLowerCase());
+
+    return matchesCategory && matchesSearch;
+  });
 
   return (
     <div className={styles.container}>
@@ -428,17 +450,23 @@ const ImageGallery = () => {
         ))}
       </div>
 
+      <button className={styles.toggleBlurButton} onClick={toggleBlur}>
+        {blurEnabled ? "Blur Off" : "Blur On"}
+      </button>
+
       <div className={styles.gallery}>
         {filteredImages.map((image, index) => (
           <div key={index} onClick={() => handleImageClick(image)}>
-            <ImageCard image={image} />
+            <ImageCard image={image} blurEnabled={blurEnabled} />
           </div>
         ))}
       </div>
 
       {zoomedImage && (
         <div
-          className={styles.zoomOverlay}
+          className={`${styles.zoomOverlay} ${
+            blurEnabled && zoomedImage.category === "18+" ? styles.blurred : ""
+          }`}
           onClick={() => setZoomedImage(null)}
         >
           <img
@@ -446,6 +474,11 @@ const ImageGallery = () => {
             alt={zoomedImage.title}
             className={styles.zoomedImage}
           />
+          {blurEnabled && zoomedImage.category === "18+" && (
+            <div className={styles.iconOverlay}>
+              <VscEyeClosed className={styles.eyeIcon} />
+            </div>
+          )}
         </div>
       )}
 

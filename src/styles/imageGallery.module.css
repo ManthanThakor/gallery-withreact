@@ -104,12 +104,20 @@
   align-items: center;
   z-index: 1000;
   cursor: zoom-out;
+  transition: filter 0.3s ease;
 }
-
+.blurred {
+  filter: blur(10px);
+}
+.eyeIcon {
+  color: white;
+  font-size: 2rem;
+}
 .zoomedImage {
   max-width: 90%;
   max-height: 90%;
   border-radius: 10px;
+  transition: filter 0.3s ease;
 }
 
 .warningOverlay {
@@ -126,3 +134,18 @@
 }
 
 /* ------------------ */
+
+.toggleBlurButton {
+  background-color: #555;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 20px;
+}
+
+.toggleBlurButton:hover {
+  background-color: #777;
+}
