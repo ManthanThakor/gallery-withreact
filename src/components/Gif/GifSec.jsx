@@ -56,7 +56,11 @@ const GifSec = () => {
   useEffect(() => {
     setShuffledItems(shuffleArray(items));
   }, []);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
   const handleCategorySelect = (category) => {
     if (category === "18+") {
       setShowWarning(true);
@@ -105,14 +109,17 @@ const GifSec = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
       />
 
-      <div className="dropdown">
-        <button className="dropdownButton">Categories</button>
-        <div className="dropdownMenu">
+      {/* Sidebar */}
+      <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
+        <button className="sidebarToggle" onClick={toggleSidebar}>
+          {isSidebarOpen ? "Close Menu" : "Open Menu"}
+        </button>
+        <div className="sidebarMenu">
           {categories.map((category, index) => (
             <a
               key={index}
               href="#"
-              className="dropdownMenuItem"
+              className="sidebarMenuItem"
               onClick={() => handleCategorySelect(category)}
             >
               {category}

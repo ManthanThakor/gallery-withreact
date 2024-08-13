@@ -181,14 +181,29 @@
 .warningButton:hover {
   background: #0056b3;
 }
-/* Dropdown Container */
-.dropdown {
-  position: relative;
-  display: inline-block;
+/* Sidebar Container */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: -250px;
+  width: 250px;
+  height: 100%;
+  background: #007bff;
+  color: #ffffff;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+  transition: left 0.3s ease;
+  z-index: 1000;
 }
 
-/* Dropdown Button */
-.dropdownButton {
+.sidebar.open {
+  left: 0;
+}
+
+/* Sidebar Toggle Button */
+.sidebarToggle {
+  position: absolute;
+  top: 20px;
+  left: 250px;
   background: #007bff;
   color: #ffffff;
   padding: 10px 20px;
@@ -199,40 +214,26 @@
   transition: background 0.3s ease;
 }
 
-.dropdownButton:hover {
+.sidebarToggle:hover {
   background: #0056b3;
 }
 
-/* Dropdown Menu */
-.dropdownMenu {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  background: #ffffff;
-  border-radius: 5px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  min-width: 200px;
-  z-index: 1000;
-  transition: opacity 0.3s ease, visibility 0.3s ease;
+/* Sidebar Menu Items */
+.sidebarMenu {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
 }
 
-.dropdown:hover .dropdownMenu,
-.dropdownButton:focus + .dropdownMenu {
-  display: block;
-  opacity: 1;
-  visibility: visible;
-}
-
-/* Dropdown Menu Items */
-.dropdownMenuItem {
+.sidebarMenuItem {
   padding: 10px 20px;
-  color: #333;
+  color: #ffffff;
   text-decoration: none;
   display: block;
+  border-bottom: 1px solid #ffffff;
   transition: background 0.3s ease;
 }
 
-.dropdownMenuItem:hover {
-  background: #e1e8f0;
+.sidebarMenuItem:hover {
+  background: #0056b3;
 }
