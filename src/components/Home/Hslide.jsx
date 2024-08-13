@@ -1,44 +1,50 @@
 import React, { useState } from "react";
-import { IonIcon } from "react-ion-icon";
-import "../styles/home/Slider.css";
+import "../../styles/home/Slider.css";
+import { IoArrowBackOutline, IoArrowForwardOutline } from "react-icons/io5";
+
 const Hslide = () => {
   const [items, setItems] = useState([
     {
       title: "Lossless Youths",
       description:
         "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.",
-      imageUrl: "https://cdn.mos.cms.futurecdn.net/dP3N4qnEZ4tCTCLq59iysd.jpg",
+      imageUrl:
+        "https://i.pinimg.com/736x/68/c5/0a/68c50ac30605fdb8ce0836aaeaacd48c.jpg",
     },
     {
       title: "Estrange Bond",
       description:
         "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.",
-      imageUrl: "https://i.redd.it/tc0aqpv92pn21.jpg",
+      imageUrl:
+        "https://ashisheditz.com/wp-content/uploads/2023/11/instagram-dp-pic-new.jpg",
     },
     {
       title: "The Gate Keeper",
       description:
         "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.",
-      imageUrl: "https://wharferj.files.wordpress.com/2015/11/bio_north.jpg",
+      imageUrl:
+        "https://ashisheditz.com/wp-content/uploads/2023/11/attitude-dp-pic-new.jpg",
     },
     {
       title: "Last Trace Of Us",
       description:
         "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.",
-      imageUrl: "https://images7.alphacoders.com/878/878663.jpg",
+      imageUrl:
+        "https://ashisheditz.com/wp-content/uploads/2023/11/whatsapp-dp-pic-new.jpg",
     },
     {
       title: "Urban Decay",
       description:
         "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.",
       imageUrl:
-        "https://theawesomer.com/photos/2017/07/simon_stalenhag_the_electric_state_6.jpg",
+        "https://ashisheditz.com/wp-content/uploads/2023/11/dp-pic-new-style.jpg",
     },
     {
       title: "The Migration",
       description:
         "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.",
-      imageUrl: "https://da.se/app/uploads/2015/09/simon-december1994.jpg",
+      imageUrl:
+        "https://ashisheditz.com/wp-content/uploads/2023/11/nice-dp-pic-new.jpg",
     },
   ]);
 
@@ -54,7 +60,7 @@ const Hslide = () => {
   };
 
   return (
-    <main>
+    <div>
       <ul className="slider">
         {items.map((item, index) => (
           <li
@@ -70,19 +76,11 @@ const Hslide = () => {
           </li>
         ))}
       </ul>
-      <nav className="nav">
-        <IonIcon
-          className="btn prev"
-          name="arrow-back-outline"
-          onClick={handlePrev}
-        />
-        <IonIcon
-          className="btn next"
-          name="arrow-forward-outline"
-          onClick={handleNext}
-        />
-      </nav>
-    </main>
+      <div className="main-sec-slid">
+        <IoArrowBackOutline className="btn prev" onClick={handlePrev} />
+        <IoArrowForwardOutline className="btn next" onClick={handleNext} />
+      </div>
+    </div>
   );
 };
 
