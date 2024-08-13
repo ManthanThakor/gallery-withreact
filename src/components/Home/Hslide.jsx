@@ -3,7 +3,10 @@ import "../../styles/home/Slider.css";
 import { IoArrowBackOutline, IoArrowForwardOutline } from "react-icons/io5";
 
 const Hslide = () => {
-  const [items, setItems] = useState([
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(""); // State to track the direction
+
+  const items = [
     {
       title: "Lossless Youths",
       description:
@@ -46,33 +49,40 @@ const Hslide = () => {
       imageUrl:
         "https://ashisheditz.com/wp-content/uploads/2023/11/nice-dp-pic-new.jpg",
     },
-  ]);
+  ];
 
   const handleNext = () => {
-    setItems((prevItems) => [...prevItems.slice(1), prevItems[0]]);
+    setDirection("right");
+    setCurrentIndex((prevIndex) =>
+      prevIndex === items.length - 1 ? 0 : prevIndex + 1
+    );
   };
 
   const handlePrev = () => {
-    setItems((prevItems) => [
-      prevItems[prevItems.length - 1],
-      ...prevItems.slice(0, prevItems.length - 1),
-    ]);
+    setDirection("left");
+    setCurrentIndex((prevIndex) =>
+      prevIndex === 0 ? items.length - 1 : prevIndex - 1
+    );
   };
 
   return (
-    <div>
+    <div className="slide-home">
       <ul className="slider">
         {items.map((item, index) => (
           <li
             key={index}
-            className={`item ${index === 1 ? "active" : ""}`}
+            className={`item ${
+              index === currentIndex ? "active" : "inactive"
+            } ${direction}`} // Apply direction-based classes
             style={{ backgroundImage: `url(${item.imageUrl})` }}
           >
-            <div className="content">
-              <h2 className="title">{item.title}</h2>
-              <p className="description">{item.description}</p>
-              <button>Read More</button>
-            </div>
+            {index === currentIndex && (
+              <div className="content">
+                <h2 className="title">{item.title}</h2>
+                <p className="description">{item.description}</p>
+                <button>Read More</button>
+              </div>
+            )}
           </li>
         ))}
       </ul>

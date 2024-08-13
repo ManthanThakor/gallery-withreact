@@ -8,6 +8,7 @@
   justify-content: space-between;
   font-family: "Arial", sans-serif;
   color: white;
+  padding-bottom: 600px;
 }
 
 .App-header {
@@ -30,8 +31,5 @@
   padding: 20px;
   width: 100%;
   flex: 1;
-  padding-bottom: 80px;
-}
-
-.slide-home {
+  /* padding-bottom: 80px; */
 }
