@@ -1,0 +1,21 @@
+.searchInput {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 16px;
+}
+
+.filters {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 16px;
+}
+
+.filterButton {
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.activeFilter {
+  background-color: #007bff;
+  color: white;
+}

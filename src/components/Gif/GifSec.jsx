@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { VscEyeClosed } from "react-icons/vsc";
 import GifCard from "./GifCard";
+import "../../styles/gif/GifSe.css";
 
 // Sample items with valid data
 const items = [
@@ -9,10 +10,30 @@ const items = [
     id: 1,
     url: "https://gifcandy.net/wp-content/uploads/2020/04/Janice-Griffith-bound-squirt-and-gape.gif",
     title: "Funny Cat",
-    category: "Cute Girl",
-    type: "gif", // GIF example
+    category: "18+",
+    type: "gif",
   },
-  // Add more items as needed
+  {
+    id: 2,
+    url: "https://gifcandy.net/wp-content/uploads/2016/04/gifcandy-squirt-100.gif",
+    title: "Funny Cat",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 3,
+    url: "https://gifcandy.net/wp-content/uploads/2016/04/gifcandy-squirt-98.gif",
+    title: "Funny Cat",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 4,
+    url: "https://gifcandy.net/wp-content/uploads/2016/04/gifcandy-squirt-96.gif",
+    title: "Funny Cat",
+    category: "Cute Girl",
+    type: "gif",
+  },
 ];
 
 const categories = ["All", "Cute Girl", "Anime Girl", "Hot Girl", "18+"];
@@ -74,7 +95,7 @@ const GifSec = () => {
   });
 
   return (
-    <div className="container">
+    <div className="container-gif">
       {/* Search Input */}
       <input
         type="text"
@@ -84,19 +105,20 @@ const GifSec = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
       />
 
-      {/* Category Filters */}
-      <div className="filters">
-        {categories.map((category, index) => (
-          <button
-            key={index}
-            className={`filterButton ${
-              selectedCategory === category ? "activeFilter" : ""
-            }`}
-            onClick={() => handleCategorySelect(category)}
-          >
-            {category}
-          </button>
-        ))}
+      <div className="dropdown">
+        <button className="dropdownButton">Categories</button>
+        <div className="dropdownMenu">
+          {categories.map((category, index) => (
+            <a
+              key={index}
+              href="#"
+              className="dropdownMenuItem"
+              onClick={() => handleCategorySelect(category)}
+            >
+              {category}
+            </a>
+          ))}
+        </div>
       </div>
 
       {/* Toggle Blur Button */}

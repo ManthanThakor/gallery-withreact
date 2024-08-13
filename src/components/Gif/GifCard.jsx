@@ -16,7 +16,6 @@ const GifCard = ({ gif = { url: "", title: "" }, blurEnabled }) => {
             alt={gif.title || "GIF image"}
             className={styles.cardImage}
           />
-          <h3 className={styles.cardTitle}>{gif.title}</h3>
         </>
       ) : (
         <p>No GIF available</p>

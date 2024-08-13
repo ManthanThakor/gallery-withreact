@@ -1,3 +1,238 @@
-* {
-  color: aliceblue;
+.container-gif {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  background: linear-gradient(135deg, #f0f4f8, #e1e8f0);
+  min-height: 100vh;
+  font-family: "Arial", sans-serif;
+  position: relative;
+  padding-top: 100px;
+}
+
+/* Search Input */
+.searchInput {
+  width: 100%;
+  max-width: 400px;
+  padding: 10px 20px;
+  margin-bottom: 20px;
+  border-radius: 30px;
+  border: 1px solid #ddd;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.searchInput:focus {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+}
+
+/* Category Filters */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filterButton {
+  background: #ffffff;
+  border: 2px solid #007bff;
+  color: #007bff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filterButton.activeFilter {
+  background: #007bff;
+  color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
+}
+
+.filterButton:hover {
+  background: #e1e8f0;
+}
+
+/* Toggle Blur Button */
+.toggleBlurButton {
+  background: #007bff;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  margin-bottom: 20px;
+  transition: all 0.3s ease;
+}
+
+.toggleBlurButton:hover {
+  background: #0056b3;
+}
+
+/* Display Filtered Items */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 2fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Gif Cards */
+.gifCard {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.gifCard:hover {
+  transform: scale(1.05);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* Zoomed Item Overlay */
+.zoomOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  transition: opacity 0.3s ease;
+}
+
+.zoomedImage {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 15px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.iconOverlay {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.7);
+  border-radius: 50%;
+  padding: 10px;
+}
+
+.eyeIcon {
+  color: #ffffff;
+  font-size: 24px;
+}
+
+/* Warning Overlay */
+.warningOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.warningBox {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.warningBox h2 {
+  margin-bottom: 15px;
+  color: #dc3545;
+}
+
+.warningBox p {
+  margin-bottom: 20px;
+}
+
+.warningButton {
+  background: #007bff;
+  color: #ffffff;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-weight: bold;
+  margin: 5px;
+  transition: all 0.3s ease;
+}
+
+.warningButton:hover {
+  background: #0056b3;
+}
+/* Dropdown Container */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Button */
+.dropdownButton {
+  background: #007bff;
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.dropdownButton:hover {
+  background: #0056b3;
+}
+
+/* Dropdown Menu */
+.dropdownMenu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  min-width: 200px;
+  z-index: 1000;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.dropdown:hover .dropdownMenu,
+.dropdownButton:focus + .dropdownMenu {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Dropdown Menu Items */
+.dropdownMenuItem {
+  padding: 10px 20px;
+  color: #333;
+  text-decoration: none;
+  display: block;
+  transition: background 0.3s ease;
+}
+
+.dropdownMenuItem:hover {
+  background: #e1e8f0;
 }
