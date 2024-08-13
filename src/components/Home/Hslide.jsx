@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "../../styles/home/Slider.css";
 import { IoArrowBackOutline, IoArrowForwardOutline } from "react-icons/io5";
 
 const Hslide = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(""); // State to track the direction
+  const [direction, setDirection] = useState("");
+  const [animate, setAnimate] = useState(false);
 
   const items = [
     {
@@ -53,6 +54,7 @@ const Hslide = () => {
 
   const handleNext = () => {
     setDirection("right");
+    setAnimate(true);
     setCurrentIndex((prevIndex) =>
       prevIndex === items.length - 1 ? 0 : prevIndex + 1
     );
@@ -60,24 +62,32 @@ const Hslide = () => {
 
   const handlePrev = () => {
     setDirection("left");
+    setAnimate(true);
     setCurrentIndex((prevIndex) =>
       prevIndex === 0 ? items.length - 1 : prevIndex - 1
     );
   };
 
+  useEffect(() => {
+    if (animate) {
+      const timer = setTimeout(() => setAnimate(false), 1000); // Match with animation duration
+      return () => clearTimeout(timer);
+    }
+  }, [animate]);
+
   return (
-    <div className="slide-home">
+    <div className="slide-home-two">
       <ul className="slider">
         {items.map((item, index) => (
           <li
             key={index}
             className={`item ${
               index === currentIndex ? "active" : "inactive"
-            } ${direction}`} // Apply direction-based classes
+            } ${direction}`}
             style={{ backgroundImage: `url(${item.imageUrl})` }}
           >
             {index === currentIndex && (
-              <div className="content">
+              <div className={`content ${animate ? "animate" : ""}`}>
                 <h2 className="title">{item.title}</h2>
                 <p className="description">{item.description}</p>
                 <button>Read More</button>

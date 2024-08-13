@@ -2,6 +2,8 @@
 .slide-home {
   position: relative;
   width: 100%;
+  height: 700px;
+  background-color: #000;
   margin-top: 40px;
   z-index: 1;
 }
@@ -9,8 +11,10 @@
 /* Slider List */
 .slider {
   display: flex;
+  margin-top: 300px;
   justify-content: center;
   align-items: center;
+  overflow: hidden; /* Ensure no overflow outside of slider */
 }
 
 /* Slide Item */
@@ -20,57 +24,51 @@
   list-style-type: none;
   position: absolute;
   top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-position: center;
   background-size: cover;
   border-radius: 20px;
   opacity: 0;
   z-index: 1;
-  transition: opacity 0.7s ease, transform 0.7s ease, left 0.7s ease;
+  transition: opacity 0.7s ease, transform 0.7s ease;
 }
 
+/* Active slide */
 .item.active {
   width: 400px;
   height: 500px;
   opacity: 1;
   z-index: 3;
+  transform: translate(-50%, -50%);
 }
 
+/* Transition states */
 .item.left {
-  transform: translateX(-100%);
+  transform: translate(-150%, -50%);
 }
 
 .item.right {
-  transform: translateX(100%);
+  transform: translate(50%, -50%);
 }
 
-/* When moving to the left */
 .item.left.active {
-  transform: translateX(0);
+  transform: translate(-50%, -50%);
 }
 
-/* When moving to the right */
 .item.right.active {
-  transform: translateX(0);
+  transform: translate(-50%, -50%);
 }
 
-/* Inactive items */
 .item.inactive {
-  transform: scale(0.8);
+  transform: scale(0.8) translate(-50%, -50%);
   opacity: 0.5;
-}
-
-.item.inactive.left {
-  transform: translateX(-50%) scale(0.8);
-}
-
-.item.inactive.right {
-  transform: translateX(50%) scale(0.8);
 }
 
 /* Arrow Buttons */
 .main-sec-slid {
   position: absolute;
-  bottom: -483px;
+  bottom: 100px; /* Adjust this to position it correctly */
   left: 50%;
   transform: translateX(-50%);
   z-index: 5;
@@ -90,15 +88,24 @@
 .main-sec-slid .btn:hover {
   background-color: rgba(255, 255, 255, 0.3);
 }
+
+/* Content Styling */
+.item .content {
+  position: absolute;
+  bottom: 60px; /* Center content from bottom */
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  color: #fff;
+}
+
 /* Title Styling */
 .item .content .title {
   font-size: 2rem;
-  color: #fff;
   margin-bottom: 1rem;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-  transform: translateY(-20px);
   opacity: 0;
-  transition: transform 0.5s ease, opacity 0.5s ease;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 /* Read More Button Styling */
@@ -111,25 +118,45 @@
   cursor: pointer;
   font-weight: bold;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  transform: scale(0.8);
   opacity: 0;
-  transition: transform 0.5s ease, opacity 0.5s ease, box-shadow 0.3s ease;
+  transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
 /* Hover Effects for Button */
 .item .content button:hover {
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-  transform: scale(0.9);
   background-color: rgba(255, 255, 255, 0.7);
 }
 
-/* Active Slide Animations */
+/* Animation for the title */
+@keyframes slideIn {
+  0% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Animation for the button */
+@keyframes buttonScaleIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Apply animation when slide is active */
 .item.active .content .title {
-  transform: translateY(0);
-  opacity: 1;
+  animation: slideIn 0.5s ease forwards;
 }
 
 .item.active .content button {
-  transform: scale(1);
-  opacity: 1;
+  animation: buttonScaleIn 0.5s ease forwards;
 }
