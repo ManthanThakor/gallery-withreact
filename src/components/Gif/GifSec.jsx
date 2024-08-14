@@ -52,15 +52,16 @@ const GifSec = () => {
   const [zoomedItem, setZoomedItem] = useState(null);
   const [shuffledItems, setShuffledItems] = useState([]);
   const [blurEnabled, setBlurEnabled] = useState(true);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   useEffect(() => {
     setShuffledItems(shuffleArray(items));
   }, []);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+
   const handleCategorySelect = (category) => {
     if (category === "18+") {
       setShowWarning(true);

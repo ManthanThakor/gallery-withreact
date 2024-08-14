@@ -1,102 +1,121 @@
+/* GifSe.css */
+
+/* Container for the whole component */
 .container-gif {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
-  background: linear-gradient(135deg, #f0f4f8, #e1e8f0);
+  background-color: #1a1a1a;
+  color: #fff;
   min-height: 100vh;
-  font-family: "Arial", sans-serif;
-  position: relative;
+  font-family: Arial, sans-serif;
   padding-top: 100px;
 }
 
 /* Search Input */
 .searchInput {
   width: 100%;
-  max-width: 400px;
-  padding: 10px 20px;
+  max-width: 500px;
+  padding: 10px;
   margin-bottom: 20px;
-  border-radius: 30px;
-  border: 1px solid #ddd;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease;
+  border: none;
+  border-radius: 5px;
+  background-color: #333;
+  color: #fff;
+  font-size: 16px;
 }
 
-.searchInput:focus {
-  border-color: #007bff;
-  outline: none;
-  box-shadow: 0 4px 8px rgba(0, 123, 255, 0.2);
+/* Sidebar Styles */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #222;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease;
+  z-index: 1000;
 }
 
-/* Category Filters */
-.filters {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 20px;
+.sidebar.open {
+  transform: translateX(0);
 }
 
-.filterButton {
-  background: #ffffff;
-  border: 2px solid #007bff;
-  color: #007bff;
+.sidebarToggle {
+  position: absolute;
+  top: 10px;
+  right: -50px;
+  background-color: #444;
+  color: #fff;
+  border: none;
   padding: 10px 20px;
-  border-radius: 25px;
-  font-weight: bold;
   cursor: pointer;
-  transition: all 0.3s ease;
 }
 
-.filterButton.activeFilter {
-  background: #007bff;
-  color: #ffffff;
-  box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2);
+.sidebarMenu {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
 }
 
-.filterButton:hover {
-  background: #e1e8f0;
+.sidebarMenuItem {
+  padding: 15px;
+  color: #fff;
+  text-decoration: none;
+  font-size: 18px;
+  border-bottom: 1px solid #333;
+}
+
+.sidebarMenuItem:hover {
+  background-color: #333;
 }
 
 /* Toggle Blur Button */
 .toggleBlurButton {
-  background: #007bff;
-  color: #ffffff;
+  margin-top: 20px;
   padding: 10px 20px;
-  border-radius: 25px;
   border: none;
+  border-radius: 5px;
+  background-color: #555;
+  color: #fff;
   cursor: pointer;
-  font-weight: bold;
-  margin-bottom: 20px;
-  transition: all 0.3s ease;
 }
 
 .toggleBlurButton:hover {
-  background: #0056b3;
+  background-color: #666;
 }
 
-/* Display Filtered Items */
+/* Gallery Styles */
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 2fr));
-  gap: 20px;
-  width: 100%;
-  max-width: 1200px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
 }
 
-/* Gif Cards */
+/* GifCard Styles */
 .gifCard {
   position: relative;
-  width: 100%;
-  height: 100%;
+  width: 200px;
+  height: 200px;
   overflow: hidden;
-  border-radius: 15px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .gifCard:hover {
   transform: scale(1.05);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+}
+
+.gifCard img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 10px;
 }
 
 /* Zoomed Item Overlay */
@@ -106,33 +125,30 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
-  transition: opacity 0.3s ease;
+  z-index: 1001;
 }
 
 .zoomedImage {
   max-width: 90%;
   max-height: 80%;
-  border-radius: 15px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  object-fit: cover;
 }
 
+/* Icon Overlay */
 .iconOverlay {
   position: absolute;
   top: 10px;
   right: 10px;
-  background: rgba(0, 0, 0, 0.7);
-  border-radius: 50%;
-  padding: 10px;
 }
 
 .eyeIcon {
-  color: #ffffff;
-  font-size: 24px;
+  font-size: 30px;
+  color: #fff;
 }
 
 /* Warning Overlay */
@@ -142,98 +158,34 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
+  z-index: 1002;
 }
 
 .warningBox {
-  background: #ffffff;
-  padding: 30px;
+  background-color: #333;
+  padding: 20px;
   border-radius: 10px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
   text-align: center;
 }
 
 .warningBox h2 {
-  margin-bottom: 15px;
-  color: #dc3545;
-}
-
-.warningBox p {
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .warningButton {
-  background: #007bff;
-  color: #ffffff;
+  background-color: #555;
+  color: #fff;
   border: none;
   padding: 10px 20px;
-  border-radius: 25px;
+  margin: 10px;
+  border-radius: 5px;
   cursor: pointer;
-  font-weight: bold;
-  margin: 5px;
-  transition: all 0.3s ease;
 }
 
 .warningButton:hover {
-  background: #0056b3;
-}
-/* Sidebar Container */
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: -250px;
-  width: 250px;
-  height: 100%;
-  background: #007bff;
-  color: #ffffff;
-  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
-  transition: left 0.3s ease;
-  z-index: 1000;
-}
-
-.sidebar.open {
-  left: 0;
-}
-
-/* Sidebar Toggle Button */
-.sidebarToggle {
-  position: absolute;
-  top: 20px;
-  left: 250px;
-  background: #007bff;
-  color: #ffffff;
-  padding: 10px 20px;
-  border-radius: 25px;
-  border: none;
-  cursor: pointer;
-  font-weight: bold;
-  transition: background 0.3s ease;
-}
-
-.sidebarToggle:hover {
-  background: #0056b3;
-}
-
-/* Sidebar Menu Items */
-.sidebarMenu {
-  display: flex;
-  flex-direction: column;
-  padding: 20px;
-}
-
-.sidebarMenuItem {
-  padding: 10px 20px;
-  color: #ffffff;
-  text-decoration: none;
-  display: block;
-  border-bottom: 1px solid #ffffff;
-  transition: background 0.3s ease;
-}
-
-.sidebarMenuItem:hover {
-  background: #0056b3;
+  background-color: #666;
 }

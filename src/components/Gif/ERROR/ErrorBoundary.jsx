@@ -1,5 +1,6 @@
 // src/components/ErrorBoundary.js
 import React, { Component } from "react";
+import "../../../styles/gif/ErrorBoundary.css";
 
 class ErrorBoundary extends Component {
   constructor(props) {
