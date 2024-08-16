@@ -54,10 +54,6 @@ const GifSec = () => {
   const [blurEnabled, setBlurEnabled] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  useEffect(() => {
-    setShuffledItems(shuffleArray(items));
-  }, []);
-
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
@@ -75,11 +71,14 @@ const GifSec = () => {
   };
 
   const toggleBlur = () => {
-    setBlurEnabled(!blurEnabled);
-    localStorage.setItem("blurEnabled", JSON.stringify(!blurEnabled));
+    const newBlurState = !blurEnabled;
+    setBlurEnabled(newBlurState);
+    localStorage.setItem("blurEnabled", JSON.stringify(newBlurState));
+    console.log("Blur toggled. New state:", newBlurState);
   };
 
   useEffect(() => {
+    setShuffledItems(shuffleArray(items));
     const savedBlurState = JSON.parse(localStorage.getItem("blurEnabled"));
     if (savedBlurState !== null) {
       setBlurEnabled(savedBlurState);
@@ -101,7 +100,6 @@ const GifSec = () => {
 
   return (
     <div className="container-gif">
-      {/* Search Input */}
       <input
         type="text"
         placeholder="Search items..."
@@ -110,10 +108,16 @@ const GifSec = () => {
         onChange={(e) => setSearchTerm(e.target.value)}
       />
 
-      {/* Sidebar */}
       <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
-        <button className="sidebarToggle" onClick={toggleSidebar}>
-          {isSidebarOpen ? "Close Menu" : "Open Menu"}
+        <button
+          className={`sidebarToggle ${isSidebarOpen ? "open" : "closed"}`}
+          onClick={toggleSidebar}
+        >
+          <i
+            className={`fas ${
+              isSidebarOpen ? "fa-chevron-left" : "fa-chevron-right"
+            }`}
+          ></i>
         </button>
         <div className="sidebarMenu">
           {categories.map((category, index) => (
@@ -129,12 +133,18 @@ const GifSec = () => {
         </div>
       </div>
 
-      {/* Toggle Blur Button */}
-      <button className="toggleBlurButton" onClick={toggleBlur}>
-        {blurEnabled ? "Blur Off" : "Blur On"}
-      </button>
+      <div className="toggleBlurButton">
+        <div className="button-cover-blur" onClick={toggleBlur}>
+          <input
+            type="checkbox"
+            className="checkbox"
+            checked={blurEnabled}
+            onChange={toggleBlur}
+          />
+          <div className="button-toggle"></div>
+        </div>
+      </div>
 
-      {/* Display Filtered Items */}
       <div className="gallery">
         {filteredItems.map((item, index) => (
           <div key={index} onClick={() => handleItemClick(item)}>
@@ -143,7 +153,6 @@ const GifSec = () => {
         ))}
       </div>
 
-      {/* Zoomed Item Overlay */}
       {zoomedItem && (
         <div
           className={`zoomOverlay ${
@@ -164,7 +173,6 @@ const GifSec = () => {
         </div>
       )}
 
-      {/* Warning Overlay */}
       {showWarning && (
         <div className="warningOverlay">
           <div className="warningBox">
