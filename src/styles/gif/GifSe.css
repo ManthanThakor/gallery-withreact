@@ -17,12 +17,12 @@
 .searchInput {
   width: 100%;
   max-width: 500px;
-  padding: 12px;
+  padding: 8px 12px;
   border: none;
-  border-radius: 8px;
+  border-radius: 2ch;
   background: linear-gradient(135deg, #333, #444);
   color: #fff;
-  font-size: 18px;
+  font-size: 16px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
   transition: background 0.3s ease, box-shadow 0.3s ease;
 }
@@ -259,7 +259,7 @@
   position: relative;
   border-radius: 30px; /* Adjusted border-radius */
   overflow: hidden;
-  background: linear-gradient(145deg, #8e0a0a7e, #a6a4a479);
+  background: linear-gradient(145deg, #3a2d2d7e, #a6a4a479);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
 }
 
@@ -281,7 +281,7 @@
 }
 
 .checkbox:checked + .button-toggle {
-  background: linear-gradient(145deg, #8e0a0a7e, #a6a4a479);
+  background: linear-gradient(145deg, #3d37377e, #a6a4a479);
 }
 
 .button-toggle::before {
@@ -337,4 +337,50 @@
 
 .toggleBlurButton {
   margin-left: auto;
+}
+/* Add this to your existing CSS file (GifSec.css) */
+.notification {
+  position: fixed;
+  top: 50px;
+  justify-content: center;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #ffffff;
+  padding: 10px 20px;
+  border-radius: 2ch;
+  z-index: 1000;
+  animation: fadeInOut 3s ease-in-out;
+}
+
+@keyframes fadeInOut {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  10%,
+  90% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+}
+
+.blurred {
+  filter: blur(8px);
+}
+.iconOverlay {
+  position: absolute;
+  top: 50%;
+  left: 65%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: white;
+  z-index: 2;
+}
+.eyeIcon {
+  padding: 10px;
+  background-color: #0704049b;
+  border-radius: 50%;
 }

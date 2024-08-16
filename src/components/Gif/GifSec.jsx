@@ -53,6 +53,7 @@ const GifSec = () => {
   const [shuffledItems, setShuffledItems] = useState([]);
   const [blurEnabled, setBlurEnabled] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [showNotification, setShowNotification] = useState(false);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -98,12 +99,21 @@ const GifSec = () => {
     return matchesCategory && matchesSearch;
   });
 
+  const handleInfoClick = () => {
+    setShowNotification(true);
+    setTimeout(() => {
+      setShowNotification(false);
+    }, 3000); // Hide after 3 seconds
+  };
+
   return (
     <div className="container-gif">
       <div className="search-container">
         <FaInfoCircle
           className="infoIcon"
           title="Click the left side button to select category"
+          onMouseEnter={handleInfoClick}
+          onClick={handleInfoClick}
         />
         <input
           type="text"
@@ -124,6 +134,12 @@ const GifSec = () => {
           </div>
         </div>
       </div>
+
+      {showNotification && (
+        <div className="notification">
+          Click the left side button to select category
+        </div>
+      )}
 
       <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
         <button
@@ -168,9 +184,9 @@ const GifSec = () => {
           <img
             src={zoomedItem.url}
             alt={zoomedItem.title}
-            className="zoomedImage"
+            className={`zoomedImage ${blurEnabled ? "blurred" : ""}`}
           />
-          {blurEnabled && zoomedItem.category === "18+" && (
+          {blurEnabled && (
             <div className="iconOverlay">
               <VscEyeClosed className="eyeIcon" />
             </div>
