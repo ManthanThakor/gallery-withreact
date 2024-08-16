@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { VscEyeClosed } from "react-icons/vsc";
+import { FaInfoCircle } from "react-icons/fa";
 import GifCard from "./GifCard";
 import "../../styles/gif/GifSe.css";
-
 // Sample items with valid data
 const items = [
   {
@@ -100,13 +100,30 @@ const GifSec = () => {
 
   return (
     <div className="container-gif">
-      <input
-        type="text"
-        placeholder="Search items..."
-        className="searchInput"
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      />
+      <div className="search-container">
+        <FaInfoCircle
+          className="infoIcon"
+          title="Click the left side button to select category"
+        />
+        <input
+          type="text"
+          placeholder="Search items..."
+          className="searchInput"
+          value={searchTerm}
+          onChange={(e) => setSearchTerm(e.target.value)}
+        />
+        <div className="toggleBlurButton">
+          <div className="button-cover-blur" onClick={toggleBlur}>
+            <input
+              type="checkbox"
+              className="checkbox"
+              checked={blurEnabled}
+              onChange={toggleBlur}
+            />
+            <div className="button-toggle"></div>
+          </div>
+        </div>
+      </div>
 
       <div className={`sidebar ${isSidebarOpen ? "open" : ""}`}>
         <button
@@ -130,18 +147,6 @@ const GifSec = () => {
               {category}
             </a>
           ))}
-        </div>
-      </div>
-
-      <div className="toggleBlurButton">
-        <div className="button-cover-blur" onClick={toggleBlur}>
-          <input
-            type="checkbox"
-            className="checkbox"
-            checked={blurEnabled}
-            onChange={toggleBlur}
-          />
-          <div className="button-toggle"></div>
         </div>
       </div>
 
