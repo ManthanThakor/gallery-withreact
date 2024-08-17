@@ -73,10 +73,9 @@
 .sidebarMenu {
   display: flex;
   flex-direction: column;
-  margin-top: 60px;
+  margin-top: 80px;
   overflow-y: scroll;
   overflow-x: hidden;
-  /* width: 300px; */
   height: 80vh;
 }
 
@@ -90,8 +89,42 @@
   color: #fff;
   text-decoration: none;
   font-size: 20px;
-  border-bottom: 1px solid #333;
-  transition: background 0.3s ease;
+  border-bottom: 1px solid #434343;
+  transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  border-radius: 5px; /* Optional: Add rounded corners */
+}
+
+/* Hover effect */
+.sidebarMenuItem:hover {
+  background: rgba(255, 255, 255, 0.1); /* Light background on hover */
+  color: #696969; /* Change text color on hover */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6); /* Subtle shadow on hover */
+  transform: translateY(-2px); /* Slight lift effect */
+}
+
+/* Active item styling */
+.sidebarMenuItem.active {
+  color: #6fff00; /* Active text color */
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.06); /* Light background for active item */
+  box-shadow: 0 6px 20px rgba(75, 17, 7, 0.419); /* Glowing shadow for active item */
+}
+
+/* Optional: Add animation for the active state */
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 2px #cdcdcd6b;
+  }
+  50% {
+    text-shadow: 0 0 3px #d5d4d366, 0 0 2px #aaaaaa92;
+  }
+  100% {
+    text-shadow: 0 0 1px #cfcfcf85;
+  }
+}
+
+.sidebarMenuItem.active {
+  animation: glow 1.5s infinite alternate; /* Apply glow animation to active item */
 }
 
 /* Toggle Blur Button */

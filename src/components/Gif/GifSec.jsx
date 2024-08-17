@@ -49,14 +49,8 @@ const categories = [
   "Angry",
   "Laugh",
   "Sad",
-  "Scared",
-  "Tired",
-  "Smile",
-  "Angry",
-  "Laugh",
-  "Sad",
-  "Scared",
-  "Tired",
+  "Fight",
+  "Horror",
 ];
 
 const shuffleArray = (array) => {
@@ -85,6 +79,7 @@ const GifSec = () => {
       setShowWarning(true);
     } else {
       setSelectedCategory(category);
+      localStorage.setItem("selectedCategory", category);
     }
   };
 
@@ -96,7 +91,6 @@ const GifSec = () => {
     const newBlurState = !blurEnabled;
     setBlurEnabled(newBlurState);
     localStorage.setItem("blurEnabled", JSON.stringify(newBlurState));
-    console.log("Blur toggled. New state:", newBlurState);
   };
 
   useEffect(() => {
@@ -104,6 +98,11 @@ const GifSec = () => {
     const savedBlurState = JSON.parse(localStorage.getItem("blurEnabled"));
     if (savedBlurState !== null) {
       setBlurEnabled(savedBlurState);
+    }
+
+    const savedCategory = localStorage.getItem("selectedCategory");
+    if (savedCategory) {
+      setSelectedCategory(savedCategory);
     }
   }, []);
 
@@ -179,7 +178,9 @@ const GifSec = () => {
             <a
               key={index}
               href="#"
-              className="sidebarMenuItem"
+              className={`sidebarMenuItem ${
+                selectedCategory === category ? "active" : ""
+              }`}
               onClick={() => handleCategorySelect(category)}
             >
               {category}
@@ -226,6 +227,7 @@ const GifSec = () => {
               onClick={() => {
                 setShowWarning(false);
                 setSelectedCategory("18+");
+                localStorage.setItem("selectedCategory", "18+");
               }}
             >
               I am 18+
