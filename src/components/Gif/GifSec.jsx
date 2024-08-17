@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { VscEyeClosed } from "react-icons/vsc";
 import { FaInfoCircle } from "react-icons/fa";
-import { FaDownload, FaLink } from "react-icons/fa";
+import { FaHeart, FaRegHeart } from "react-icons/fa";
 
 import GifCard from "./GifCard";
 import "../../styles/gif/GifSe.css";
@@ -803,6 +803,9 @@ const GifSec = () => {
       setSelectedCategory(savedCategory);
     }
 
+    const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    setFavorites(savedFavorites);
+
     const container = containerRef.current;
     if (container) {
       container.addEventListener("scroll", handleScroll);
@@ -835,17 +838,19 @@ const GifSec = () => {
     }, 3000);
   };
 
-  const addToFavorites = (item) => {
-    setFavorites((prevFavorites) => {
-      console.log("Current favorites:", prevFavorites); // Debugging statement
-      const isFavorite = prevFavorites.some((fav) => fav.id === item.id);
-      if (isFavorite) return prevFavorites; // If already in favorites, no need to add again
+  const isFavorite = (item) => {
+    return favorites.some((fav) => fav.id === item.id);
+  };
 
-      const updatedFavorites = [...prevFavorites, item];
-      console.log("Updated favorites:", updatedFavorites); // Debugging statement
-      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
-      return updatedFavorites;
-    });
+  const toggleFavorite = (item) => {
+    let updatedFavorites;
+    if (isFavorite(item)) {
+      updatedFavorites = favorites.filter((fav) => fav.id !== item.id);
+    } else {
+      updatedFavorites = [...favorites, item];
+    }
+    setFavorites(updatedFavorites);
+    localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
   };
 
   const copyToClipboard = (url) => {
@@ -854,7 +859,7 @@ const GifSec = () => {
         setShowCopyMessage(true);
         setTimeout(() => {
           setShowCopyMessage(false);
-        }, 2000); // Show for 2 seconds
+        }, 2000);
       },
       (err) => {
         console.error("Failed to copy URL: ", err);
@@ -952,24 +957,30 @@ const GifSec = () => {
               <VscEyeClosed className="eyeIcon" />
             </div>
           )}
-          <button
-            className="favoriteButton"
-            onClick={(e) => {
-              e.stopPropagation();
-              addToFavorites(zoomedItem);
-            }}
-          >
-            Add to Favorite
-          </button>
-          <button
-            className="copyUrlButton"
-            onClick={(e) => {
-              e.stopPropagation();
-              copyToClipboard(zoomedItem.url);
-            }}
-          >
-            Copy URL
-          </button>
+          <div className="fav-copy">
+            <button
+              className="favoriteButton"
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleFavorite(zoomedItem);
+              }}
+            >
+              {isFavorite(zoomedItem) ? (
+                <FaHeart className="heartIcon favorite" />
+              ) : (
+                <FaRegHeart className="heartIcon" />
+              )}
+            </button>
+            <button
+              className="copyUrlButton"
+              onClick={(e) => {
+                e.stopPropagation();
+                copyToClipboard(zoomedItem.url);
+              }}
+            >
+              Copy URL
+            </button>
+          </div>
           {showCopyMessage && (
             <div className="copyMessage">URL copied to clipboard!</div>
           )}

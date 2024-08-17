@@ -189,6 +189,8 @@
 /* Zoomed Item Overlay */
 .zoomOverlay {
   position: fixed;
+  flex-direction: column;
+  gap: 20px;
   top: 0;
   left: 0;
   width: 100%;
@@ -233,7 +235,50 @@
   background-color: #0704049b;
   border-radius: 50%;
 }
+.fav-copy {
+  display: flex;
+  gap: 10px;
+}
+.favoriteButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px;
+  color: #ccc;
+  transition: color 0.3s ease;
+}
 
+.favoriteButton:hover {
+  transform: scale(1.1); /* Slightly enlarge on hover */
+  color: #f00; /* Color on hover */
+}
+
+.heartIcon {
+  transition: color 0.3s ease;
+}
+
+.favoriteButton .heartIcon.favorite {
+  color: #f00;
+}
+
+.favoriteButton .heartIcon {
+  color: #ccc;
+}
+
+/* Copy URL button styling */
+.copyUrlButton {
+  background: none;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 16px; /* Adjust size as needed */
+  transition: color 0.3s ease, text-decoration 0.3s ease;
+}
+
+.copyUrlButton:hover {
+  color: #0f0; /* Change color on hover */
+  text-decoration: underline;
+}
 /* Warning Overlay */
 .warningOverlay {
   position: fixed;
