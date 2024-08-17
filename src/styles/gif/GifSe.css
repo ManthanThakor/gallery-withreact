@@ -149,6 +149,7 @@
   flex-wrap: wrap;
   gap: 20px;
   justify-content: center;
+  margin-bottom: 100px;
 }
 
 /* GifCard Styles */
@@ -213,12 +214,24 @@
   transform: scale(1);
   transition: transform 0.3s ease;
 }
-
+.zoomedImage.blurred {
+  filter: blur(10px);
+}
 /* Icon Overlay */
 .iconOverlay {
   position: absolute;
-  top: 15px;
-  right: 15px;
+  top: 50%;
+  left: 65%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: white;
+  z-index: 10000;
+}
+
+.eyeIcon {
+  padding: 10px;
+  background-color: #0704049b;
+  border-radius: 50%;
 }
 
 /* Warning Overlay */
@@ -403,20 +416,7 @@
 .blurred {
   filter: blur(8px);
 }
-.iconOverlay {
-  position: absolute;
-  top: 50%;
-  left: 65%;
-  transform: translate(-50%, -50%);
-  font-size: 2rem;
-  color: white;
-  z-index: 2;
-}
-.eyeIcon {
-  padding: 10px;
-  background-color: #0704049b;
-  border-radius: 50%;
-}
+
 .sidebarTitle {
   position: absolute;
   top: 25px;
