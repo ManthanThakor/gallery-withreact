@@ -837,9 +837,14 @@ const GifSec = () => {
 
   const addToFavorites = (item) => {
     setFavorites((prevFavorites) => {
+      console.log("Current favorites:", prevFavorites); // Debugging statement
       const isFavorite = prevFavorites.some((fav) => fav.id === item.id);
-      if (isFavorite) return prevFavorites; // Already in favorites
-      return [...prevFavorites, item];
+      if (isFavorite) return prevFavorites; // If already in favorites, no need to add again
+
+      const updatedFavorites = [...prevFavorites, item];
+      console.log("Updated favorites:", updatedFavorites); // Debugging statement
+      localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+      return updatedFavorites;
     });
   };
 

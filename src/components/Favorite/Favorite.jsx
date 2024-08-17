@@ -1,4 +1,3 @@
-// src/components/Favorites/Favorites.js
 import React, { useState, useEffect } from "react";
 import GifCard from "../Gif/GifCard";
 import "../../styles/fav/fav.css";
@@ -9,6 +8,7 @@ const Favorites = () => {
   useEffect(() => {
     // Load favorites from localStorage
     const savedFavorites = JSON.parse(localStorage.getItem("favorites")) || [];
+    console.log("Loaded favorites:", savedFavorites); // Debugging statement
     setFavorites(savedFavorites);
   }, []);
 
@@ -27,7 +27,7 @@ const Favorites = () => {
         ) : (
           favorites.map((item) => (
             <div key={item.id} className="favorite-item">
-              <GifCard gif={item} />
+              <GifCard gif={item} blurEnabled={false} />
               <button
                 className="removeFavoriteButton"
                 onClick={() => handleRemoveFavorite(item.id)}
