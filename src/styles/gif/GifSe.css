@@ -384,3 +384,12 @@
   background-color: #0704049b;
   border-radius: 50%;
 }
+.sidebarTitle {
+  position: absolute;
+  top: 25px;
+  left: 15px;
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  color: #00ff91;
+}

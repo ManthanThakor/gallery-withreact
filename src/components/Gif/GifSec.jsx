@@ -36,7 +36,7 @@ const items = [
   },
 ];
 
-const categories = ["All", "Cute Girl", "Anime Girl", "Hot Girl", "18+"];
+const categories = ["All", "Trending", "Car", "Game", "18+", "Cute Girl"];
 
 const shuffleArray = (array) => {
   return array
@@ -153,6 +153,7 @@ const GifSec = () => {
           ></i>
         </button>
         <div className="sidebarMenu">
+          <h3 className="sidebarTitle">Select Category</h3>
           {categories.map((category, index) => (
             <a
               key={index}
