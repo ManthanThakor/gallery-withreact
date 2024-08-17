@@ -1,5 +1,6 @@
 // src/components/Navbar.js
 import React, { useState } from "react";
+import { Link } from "react-router-dom"; // Use Link for navigation
 import styles from "../styles/navbar.module.css";
 import logo from "../assets/logo.png"; // Updated path
 
@@ -18,19 +19,22 @@ const Navbar = () => {
         </div>
         <ul className={`${styles.navLinks} ${isNavOpen ? styles.active : ""}`}>
           <li>
-            <a href="/">Home</a>
+            <Link to="/">Home</Link>
           </li>
           <li>
-            <a href="/gallery">Gallery</a>
+            <Link to="/gallery">Gallery</Link>
           </li>
           <li>
-            <a href="/gif">Gif</a>
+            <Link to="/gif">Gif</Link>
           </li>
           <li>
-            <a href="/about">About</a>
+            <Link to="/favorites">Favorites</Link>
           </li>
           <li>
-            <a href="/contact">Contact</a>
+            <Link to="/about">About</Link>
+          </li>
+          <li>
+            <Link to="/contact">Contact</Link>
           </li>
         </ul>
         <button className={styles.navToggle} onClick={toggleNav}>

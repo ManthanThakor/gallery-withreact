@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { VscEyeClosed } from "react-icons/vsc";
 import { FaInfoCircle } from "react-icons/fa";
+import { FaDownload, FaLink } from "react-icons/fa";
+
 import GifCard from "./GifCard";
 import "../../styles/gif/GifSe.css";
-// Sample items with valid data
+
 const items = [
   {
     id: 1,
@@ -483,6 +485,230 @@ const items = [
     category: "Car",
     type: "gif",
   },
+  {
+    id: 69,
+    url: "https://i.gifer.com/37lt.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 70,
+    url: "https://i.gifer.com/AjdI.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 71,
+    url: "https://i.gifer.com/7RQq.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 72,
+    url: "https://i.gifer.com/6Z83.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 73,
+    url: "https://i.gifer.com/AjdI.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 74,
+    url: "https://i.gifer.com/71jz.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 75,
+    url: "https://i.gifer.com/xK.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 76,
+    url: "https://i.gifer.com/6vw5.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 77,
+    url: "https://i.gifer.com/82Un.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 78,
+    url: "https://i.gifer.com/1Q1c.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 79,
+    url: "https://i.gifer.com/fxac.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 80,
+    url: "https://i.gifer.com/YQDj.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 81,
+    url: "https://i.gifer.com/3W15.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 82,
+    url: "https://i.gifer.com/2Vo1.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 83,
+    url: "https://i.gifer.com/Q72U.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 84,
+    url: "https://i.gifer.com/1UJr.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 85,
+    url: "https://i.gifer.com/2zFo.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 86,
+    url: "https://i.gifer.com/1FX8.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 87,
+    url: "https://i.gifer.com/3F3F.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 88,
+    url: "https://i.gifer.com/Paz.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 89,
+    url: "https://i.gifer.com/4Vc.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 90,
+    url: "https://i.gifer.com/aVH.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 91,
+    url: "https://i.gifer.com/5Ik9.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 92,
+    url: "https://i.gifer.com/ZjtR.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 93,
+    url: "https://i.gifer.com/1FLH.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 94,
+    url: "https://i.gifer.com/XDZT.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 95,
+    url: "https://i.gifer.com/8LG2.gif",
+    title: "Trending 4k Game Cute Danger Hd BGMI Pubg",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 96,
+    url: "https://i.gifer.com/7Jii.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 97,
+    url: "https://i.gifer.com/g1OF.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 98,
+    url: "https://i.gifer.com/7Jj0.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 99,
+    url: "https://i.gifer.com/14Vb.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
+  {
+    id: 100,
+    url: "https://i.gifer.com/2zGr.gif",
+    title: "Trending 4k Game Cute Danger Hd",
+    category: "Game",
+    type: "gif",
+  },
 ];
 
 const categories = [
@@ -518,6 +744,29 @@ const GifSec = () => {
   const [blurEnabled, setBlurEnabled] = useState(true);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
+  const [visibleItems, setVisibleItems] = useState(10);
+  const [favorites, setFavorites] = useState([]);
+  const [showCopyMessage, setShowCopyMessage] = useState(false);
+
+  const containerRef = useRef(null);
+
+  const loadMoreItems = () => {
+    setVisibleItems((prevVisibleItems) => prevVisibleItems + 10);
+  };
+
+  const handleScroll = () => {
+    if (containerRef.current) {
+      const { scrollTop, scrollHeight, clientHeight } = containerRef.current;
+      if (scrollTop + clientHeight >= scrollHeight - 50) {
+        loadMoreItems();
+      }
+    }
+  };
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -553,6 +802,17 @@ const GifSec = () => {
     if (savedCategory) {
       setSelectedCategory(savedCategory);
     }
+
+    const container = containerRef.current;
+    if (container) {
+      container.addEventListener("scroll", handleScroll);
+    }
+
+    return () => {
+      if (container) {
+        container.removeEventListener("scroll", handleScroll);
+      }
+    };
   }, []);
 
   const filteredItems = shuffledItems.filter((item) => {
@@ -572,11 +832,33 @@ const GifSec = () => {
     setShowNotification(true);
     setTimeout(() => {
       setShowNotification(false);
-    }, 3000); // Hide after 3 seconds
+    }, 3000);
+  };
+
+  const addToFavorites = (item) => {
+    setFavorites((prevFavorites) => {
+      const isFavorite = prevFavorites.some((fav) => fav.id === item.id);
+      if (isFavorite) return prevFavorites; // Already in favorites
+      return [...prevFavorites, item];
+    });
+  };
+
+  const copyToClipboard = (url) => {
+    navigator.clipboard.writeText(url).then(
+      () => {
+        setShowCopyMessage(true);
+        setTimeout(() => {
+          setShowCopyMessage(false);
+        }, 2000); // Show for 2 seconds
+      },
+      (err) => {
+        console.error("Failed to copy URL: ", err);
+      }
+    );
   };
 
   return (
-    <div className="container-gif">
+    <div className="container-gif" ref={containerRef}>
       <div className="search-container">
         <FaInfoCircle
           className="infoIcon"
@@ -639,7 +921,7 @@ const GifSec = () => {
       </div>
 
       <div className="gallery">
-        {filteredItems.map((item, index) => (
+        {filteredItems.slice(0, visibleItems).map((item, index) => (
           <div key={index} onClick={() => handleItemClick(item)}>
             <GifCard gif={item} blurEnabled={blurEnabled} />
           </div>
@@ -664,6 +946,27 @@ const GifSec = () => {
             <div className="iconOverlay">
               <VscEyeClosed className="eyeIcon" />
             </div>
+          )}
+          <button
+            className="favoriteButton"
+            onClick={(e) => {
+              e.stopPropagation();
+              addToFavorites(zoomedItem);
+            }}
+          >
+            Add to Favorite
+          </button>
+          <button
+            className="copyUrlButton"
+            onClick={(e) => {
+              e.stopPropagation();
+              copyToClipboard(zoomedItem.url);
+            }}
+          >
+            Copy URL
+          </button>
+          {showCopyMessage && (
+            <div className="copyMessage">URL copied to clipboard!</div>
           )}
         </div>
       )}

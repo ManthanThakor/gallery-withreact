@@ -1,0 +1,35 @@
+/* src/styles/gif/Favorites.css */
+.favorites-container {
+  padding-top: 100px;
+  background: #7a7575;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  height: 100vh;
+}
+
+.favorites-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.favorite-item {
+  position: relative;
+}
+
+.removeFavoriteButton {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #ff4c4c;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  padding: 5px 10px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.removeFavoriteButton:hover {
+  background: #e03c3c;
+}
