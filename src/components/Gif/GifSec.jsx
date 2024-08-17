@@ -36,7 +36,28 @@ const items = [
   },
 ];
 
-const categories = ["All", "Trending", "Car", "Game", "18+", "Cute Girl"];
+const categories = [
+  "All",
+  "Trending",
+  "Car",
+  "Game",
+  "18+",
+  "Cute Girl",
+  "Ghost",
+  "Funny",
+  "Smile",
+  "Angry",
+  "Laugh",
+  "Sad",
+  "Scared",
+  "Tired",
+  "Smile",
+  "Angry",
+  "Laugh",
+  "Sad",
+  "Scared",
+  "Tired",
+];
 
 const shuffleArray = (array) => {
   return array
