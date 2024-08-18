@@ -742,6 +742,7 @@ const GifSec = () => {
   const [zoomedItem, setZoomedItem] = useState(null);
   const [shuffledItems, setShuffledItems] = useState([]);
   const [blurEnabled, setBlurEnabled] = useState(true);
+  const [showEmbedModal, setShowEmbedModal] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [showNotification, setShowNotification] = useState(false);
   const [visibleItems, setVisibleItems] = useState(10);
@@ -830,16 +831,23 @@ const GifSec = () => {
 
     return matchesCategory && matchesSearch;
   });
-  const copyEmbedCode = (url) => {
-    const embedCode = `<iframe src="${url}" width="560" height="315" frameborder="0" allowfullscreen></iframe>`;
+  const copyEmbedCode = (embedCode) => {
     navigator.clipboard.writeText(embedCode).then(
       () => {
-        alert("Embed code copied to clipboard!");
+        setShowCopyMessage(true);
+        setTimeout(() => {
+          setShowCopyMessage(false);
+        }, 2000); // Show the message for 2 seconds
       },
       (err) => {
         console.error("Failed to copy embed code: ", err);
       }
     );
+  };
+
+  const handleEmbedButtonClick = (item) => {
+    setZoomedItem(item);
+    setShowEmbedModal(true);
   };
   const handleInfoClick = () => {
     setShowNotification(true);
@@ -994,7 +1002,7 @@ const GifSec = () => {
               className="embedButton"
               onClick={(e) => {
                 e.stopPropagation();
-                copyEmbedCode(zoomedItem.url);
+                handleEmbedButtonClick(zoomedItem);
               }}
             >
               <FaShareSquare className="embedIcon" />
@@ -1005,7 +1013,59 @@ const GifSec = () => {
           )}
         </div>
       )}
-
+      {showEmbedModal && (
+        <div className="embedModalOverlay">
+          <div className="embedModal">
+            <h2>Embed GIF</h2>
+            <p>
+              The player is loaded faster than regular GIFs and works in all
+              browsers and devices!
+            </p>
+            <div className="embedCodeContainer">
+              <span>Fixed size</span>
+              <div className="embedCodeBlock">
+                <input
+                  type="text"
+                  readOnly
+                  value={`<iframe src="${zoomedItem.url}" width="560" height="315" frameborder="0" allowfullscreen></iframe>`}
+                />
+                <button
+                  onClick={() =>
+                    copyEmbedCode(
+                      `<iframe src="${zoomedItem.url}" width="560" height="315" frameborder="0" allowfullscreen></iframe>`
+                    )
+                  }
+                >
+                  Copy
+                </button>
+              </div>
+              <span>Responsive</span>
+              <div className="embedCodeBlock">
+                <input
+                  type="text"
+                  readOnly
+                  value={`<div style="padding-top:56.25%;position:relative;"><iframe src="${zoomedItem.url}" style="position:absolute;width:100%;height:100%;" frameborder="0" allowfullscreen></iframe></div>`}
+                />
+                <button
+                  onClick={() =>
+                    copyEmbedCode(
+                      `<div style="padding-top:56.25%;position:relative;"><iframe src="${zoomedItem.url}" style="position:absolute;width:100%;height:100%;" frameborder="0" allowfullscreen></iframe></div>`
+                    )
+                  }
+                >
+                  Copy
+                </button>
+              </div>
+            </div>
+            <button
+              className="closeModalButton"
+              onClick={() => setShowEmbedModal(false)}
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      )}
       {showWarning && (
         <div className="warningOverlay">
           <div className="warningBox">

@@ -286,6 +286,96 @@
   color: #00f; /* Change color on hover */
   transform: rotate(10deg); /* Rotate on hover */
 }
+.embedModalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10011;
+}
+
+.embedModal {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  width: 400px;
+  max-width: 100%;
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.embedModal h2 {
+  margin-top: 0;
+  margin-bottom: 15px;
+  font-size: 24px;
+  color: #000;
+}
+
+.embedModal p {
+  font-size: 14px;
+  color: #666;
+}
+
+.embedCodeContainer {
+  margin-bottom: 20px;
+}
+
+.embedCodeContainer span {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #000;
+}
+
+.embedCodeBlock {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.embedCodeBlock input {
+  flex: 1;
+  padding: 5px;
+  font-size: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.embedCodeBlock button {
+  margin-left: 10px;
+  padding: 5px 10px;
+  font-size: 12px;
+  color: #fff;
+  background-color: #00b14f;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.embedCodeBlock button:hover {
+  background-color: #009b43;
+}
+
+.closeModalButton {
+  margin-top: 20px;
+  padding: 8px 16px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #ff5c5c;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.closeModalButton:hover {
+  background-color: #e04444;
+}
 
 /* Copy URL button styling */
 .copyUrlButton {
