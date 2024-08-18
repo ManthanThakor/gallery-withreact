@@ -249,8 +249,7 @@
 }
 
 .favoriteButton:hover {
-  transform: scale(1.1); /* Slightly enlarge on hover */
-  color: #f00; /* Color on hover */
+  transform: scale(1.1);
 }
 
 .heartIcon {
@@ -263,6 +262,20 @@
 
 .favoriteButton .heartIcon {
   color: #ccc;
+}
+
+.c-url {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px; /* Adjust size as needed */
+  transition: transform 0.3s ease, color 0.3s ease;
+  color: #ccc; /* Default color */
+}
+
+.c-url:hover {
+  transform: scale(1.1); /* Slightly enlarge on hover */
+  color: #00f; /* Color on hover */
 }
 .embedButton {
   background: none;
@@ -300,7 +313,7 @@
 }
 
 .embedModal {
-  background: #fff;
+  background: #2e2e2e;
   padding: 20px;
   border-radius: 8px;
   width: 400px;
@@ -312,12 +325,13 @@
   margin-top: 0;
   margin-bottom: 15px;
   font-size: 24px;
-  color: #000;
+  color: #fff1f1;
+  text-align: center;
 }
 
 .embedModal p {
   font-size: 14px;
-  color: #666;
+  color: #b8c6b1;
 }
 
 .embedCodeContainer {
@@ -328,7 +342,7 @@
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
-  color: #000;
+  color: #ffffff;
 }
 
 .embedCodeBlock {

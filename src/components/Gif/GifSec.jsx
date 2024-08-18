@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { VscEyeClosed } from "react-icons/vsc";
-import { FaInfoCircle } from "react-icons/fa";
-import { FaHeart, FaRegHeart, FaShareSquare } from "react-icons/fa";
+import { FaHeart, FaRegHeart, FaInfoCircle } from "react-icons/fa";
+import { ImEmbed2 } from "react-icons/im";
+import { FaLink } from "react-icons/fa6";
 
 import GifCard from "./GifCard";
 import "../../styles/gif/GifSe.css";
@@ -709,6 +710,216 @@ const items = [
     category: "Game",
     type: "gif",
   },
+  {
+    id: 101,
+    url: "https://i.gifer.com/ZMiZ.gif",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd ",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 102,
+    url: "https://i.gifer.com/GmUB.gif",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 103,
+    url: "https://i.gifer.com/ZkjI.gif",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 104,
+    url: "https://i.gifer.com/7V0.gif",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 105,
+    url: "https://i.gifer.com/1dTC.gif",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 106,
+    url: "https://i.gifer.com/W1A.gif",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 107,
+    url: "https://i.gifer.com/Qw4H.gif",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 108,
+    url: "https://i.gifer.com/9fjQ.gif",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 109,
+    url: "https://i.gifer.com/8Tvf.gif",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 110,
+    url: "https://i.gifer.com/8Nwv.gif",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 111,
+    url: "https://i.gifer.com/cp.gif",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 112,
+    url: "",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 113,
+    url: "",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 114,
+    url: "",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 115,
+    url: "",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 116,
+    url: "",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 117,
+    url: "",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 118,
+    url: "",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 119,
+    url: "",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 120,
+    url: "",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 121,
+    url: "",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 122,
+    url: "",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 123,
+    url: "",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 124,
+    url: "",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 125,
+    url: "",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 126,
+    url: "",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 127,
+    url: "",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 128,
+    url: "",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 129,
+    url: "",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
+  {
+    id: 130,
+    url: "",
+    title: "Trending Hot girl Cute girl anime girl beautiful hot 4k hd",
+    category: "Cute Girl",
+    type: "gif",
+  },
 ];
 
 const categories = [
@@ -996,7 +1207,7 @@ const GifSec = () => {
                 copyToClipboard(zoomedItem.url);
               }}
             >
-              Copy URL
+              <FaLink className="c-url" />
             </button>
             <button
               className="embedButton"
@@ -1005,7 +1216,7 @@ const GifSec = () => {
                 handleEmbedButtonClick(zoomedItem);
               }}
             >
-              <FaShareSquare className="embedIcon" />
+              <ImEmbed2 className="embedIcon" />
             </button>
           </div>
           {showCopyMessage && (
