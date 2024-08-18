@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { VscEyeClosed } from "react-icons/vsc";
 import { FaInfoCircle } from "react-icons/fa";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { FaHeart, FaRegHeart, FaShareSquare } from "react-icons/fa";
 
 import GifCard from "./GifCard";
 import "../../styles/gif/GifSe.css";
@@ -830,7 +830,17 @@ const GifSec = () => {
 
     return matchesCategory && matchesSearch;
   });
-
+  const copyEmbedCode = (url) => {
+    const embedCode = `<iframe src="${url}" width="560" height="315" frameborder="0" allowfullscreen></iframe>`;
+    navigator.clipboard.writeText(embedCode).then(
+      () => {
+        alert("Embed code copied to clipboard!");
+      },
+      (err) => {
+        console.error("Failed to copy embed code: ", err);
+      }
+    );
+  };
   const handleInfoClick = () => {
     setShowNotification(true);
     setTimeout(() => {
@@ -979,6 +989,15 @@ const GifSec = () => {
               }}
             >
               Copy URL
+            </button>
+            <button
+              className="embedButton"
+              onClick={(e) => {
+                e.stopPropagation();
+                copyEmbedCode(zoomedItem.url);
+              }}
+            >
+              <FaShareSquare className="embedIcon" />
             </button>
           </div>
           {showCopyMessage && (

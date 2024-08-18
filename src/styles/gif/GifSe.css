@@ -264,6 +264,28 @@
 .favoriteButton .heartIcon {
   color: #ccc;
 }
+.embedButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 24px; /* Adjust size as needed */
+  transition: transform 0.3s ease, color 0.3s ease;
+  color: #ccc; /* Default color */
+}
+
+.embedButton:hover {
+  transform: scale(1.1); /* Slightly enlarge on hover */
+  color: #00f; /* Color on hover */
+}
+
+.embedIcon {
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.embedButton:hover .embedIcon {
+  color: #00f; /* Change color on hover */
+  transform: rotate(10deg); /* Rotate on hover */
+}
 
 /* Copy URL button styling */
 .copyUrlButton {
