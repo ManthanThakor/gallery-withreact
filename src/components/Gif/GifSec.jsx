@@ -1851,12 +1851,11 @@ const categories = [
   "Cute Girl",
   "Ghost",
   "Funny",
-  "Smile",
+  "Villain",
   "Angry",
   "Laugh",
   "Sad",
   "Fight",
-  "Horror",
 ];
 
 const shuffleArray = (array) => {
