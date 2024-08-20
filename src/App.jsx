@@ -6,7 +6,8 @@ import Navbar from "./components/Navbar";
 import Home from "./Route/Home/Home";
 import GifSec from "./components/Gif/GifSec";
 import ErrorBoundary from "./components/Gif/ERROR/ErrorBoundary";
-import Favorites from "./components/Favorite/Favorite";
+import Fav from "./Route/Fav/Fav";
+import GIf from "./Route/Gif/GIf";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
           path="/gif"
           element={
             <ErrorBoundary>
-              <GifSec />
+              <GIf />
             </ErrorBoundary>
           }
         />
@@ -30,9 +31,7 @@ function App() {
             </ErrorBoundary>
           }
         />
-        <Route path="/favorites" element={<Favorites />} />{" "}
-        {/* Add this route */}
-        {/* Uncomment these when the components are ready */}
+        <Route path="/favorites" element={<Fav />} />
         {/* <Route path="/gallery" element={<Gallery />} /> */}
         {/* <Route path="/contact" element={<Contact />} /> */}
       </Routes>

@@ -1,7 +1,7 @@
 // src/components/Home.js
 import React from "react";
 import "./Home.css";
-import ImageGallery from "../../components/Home/ImageGallery";
+import ImageGallery from "../../components/ImageGallery";
 import WelcomeSection from "../../components/WelcomeSection";
 import Hslide from "../../components/Home/Hslide";
 
