@@ -13,7 +13,7 @@ const images = [
   },
   {
     id: 2,
-    url: "https://cdn.pixabay.com/photo/2024/06/14/03/04/metro-8828747_1280.png",
+    url: "https://png.pngtree.com/thumb_back/fh260/background/20230612/pngtree-the-anime-anime-girl-in-autumn-leaves-wearing-a-long-red-image_2957988.jpg",
     title: "Slide 2",
   },
   {
