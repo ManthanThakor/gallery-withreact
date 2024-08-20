@@ -1940,7 +1940,7 @@ const items = [
   },
   {
     id: 258,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/d4f322720a68c2551f66fd5465f0e41d.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -2567,6 +2567,13 @@ const items = [
     url: "https://i.gifer.com/XqEz.gif",
     title: "4k hd Funny Meme dance dancing fire",
     category: "Funny",
+    type: "gif",
+  },
+  {
+    id: 341,
+    url: "https://myteenwebcam.com/fapp/gifs/4353a121ae904167e54abfdf94f91380.gif",
+    title: "4k hd Funny Meme dance dancing fire",
+    category: "18+",
     type: "gif",
   },
 ];

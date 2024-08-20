@@ -1,5 +1,3 @@
-/* fav.css */
-
 .favorites-container {
   padding: 20px;
   background-color: #1a1a1d; /* Dark background */
@@ -20,6 +18,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   gap: 20px;
+  margin-bottom: 40px;
 }
 
 .favorite-item {
@@ -28,17 +27,32 @@
   overflow: hidden;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+
   position: relative;
 }
 
 .favorite-item:hover {
-  transform: scale(1.05); /* Zoom effect */
+  transform: scale(1.01); /* Zoom effect */
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7); /* Stronger shadow on hover */
 }
 
 .favorite-item:hover .removeFavoriteButton {
   opacity: 1; /* Show button on hover */
   transform: translateY(0); /* Slide up animation */
+}
+
+.favorite-item img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5); /* Add a slight shadow */
+  border-radius: 10px;
+  transition: transform 0.3s ease-in-out; /* Smooth zoom effect */
+}
+
+.favorite-item:hover img {
+  transform: scale(1.1);
+  cursor: pointer;
 }
 
 .removeFavoriteButton {
@@ -61,13 +75,6 @@
   background-color: #ff5c77; /* Lighter shade on hover */
 }
 
-.favorite-item img {
-  display: block;
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-}
-
 /* Cool animations */
 @keyframes fadeIn {
   from {
@@ -88,4 +95,53 @@ p {
   text-align: center;
   font-size: 1.2rem;
   color: #cccccc;
+}
+
+/* src/styles/fav/fav.css */
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  background-color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.modal-content img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 10px;
+}
+
+.close-modal-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #e94560;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.close-modal-button:hover {
+  background-color: #ff5c77;
 }
