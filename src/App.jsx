@@ -22,6 +22,14 @@ function App() {
             </ErrorBoundary>
           }
         />
+        <Route
+          path="/gif/:category"
+          element={
+            <ErrorBoundary>
+              <GifSec />
+            </ErrorBoundary>
+          }
+        />
         <Route path="/favorites" element={<Favorites />} />{" "}
         {/* Add this route */}
         {/* Uncomment these when the components are ready */}

@@ -4,6 +4,8 @@ import { VscEyeClosed } from "react-icons/vsc";
 import { FaHeart, FaRegHeart, FaInfoCircle } from "react-icons/fa";
 import { ImEmbed2 } from "react-icons/im";
 import { FaLink } from "react-icons/fa6";
+import { useParams, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import GifCard from "./GifCard";
 import "../../styles/gif/GifSe.css";
@@ -1498,7 +1500,7 @@ const items = [
   },
   {
     id: 203,
-    url: "",
+    url: "https://tbib.org//images/6818/a29b915f83ae396b2ef86d613d3aa0f05df1ed8c.gif?7570300",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1506,7 +1508,7 @@ const items = [
   },
   {
     id: 204,
-    url: "",
+    url: "https://tbib.org//images/6814/6321c11aab5370dd78f62a1e577e455db4edf1b5.gif?7566395",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1514,7 +1516,7 @@ const items = [
   },
   {
     id: 205,
-    url: "",
+    url: "https://tbib.org//images/6770/429aa80127b67a2500273d21eac38a42e5c2bc8b.gif?7522805",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1522,7 +1524,7 @@ const items = [
   },
   {
     id: 206,
-    url: "",
+    url: "https://tbib.org//images/6276/23cdbd73fe0fa73c86bc51fb97d390d4536d02be.gif?6788523",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1530,7 +1532,7 @@ const items = [
   },
   {
     id: 207,
-    url: "",
+    url: "https://tbib.org//images/5576/97add92145dec5dff979ffc84172f6f5dd5485e7.gif?6090883",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1538,7 +1540,7 @@ const items = [
   },
   {
     id: 208,
-    url: "",
+    url: "https://tbib.org//images/5563/c49c3c81067ba68b6ad402b19a9bda95fbf19934.gif?6077756",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1546,7 +1548,7 @@ const items = [
   },
   {
     id: 209,
-    url: "",
+    url: "https://tbib.org//images/5490/50f302dd033394b02c47792c012a83db0d322d41.gif?6004487",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1554,7 +1556,7 @@ const items = [
   },
   {
     id: 210,
-    url: "",
+    url: "https://tbib.org//images/1847/c143e99a0ee63f68ab022ffa79fb8a79440bf4ec.gif?2359444",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1562,7 +1564,7 @@ const items = [
   },
   {
     id: 211,
-    url: "",
+    url: "https://tbib.org//images/1859/16d2af7f99043da0e8d58c10da019f340382e0fd.gif?2371479",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1570,7 +1572,7 @@ const items = [
   },
   {
     id: 212,
-    url: "",
+    url: "https://tbib.org//images/1795/a4772a54bd24f8b270261c1126feef5499e0cc79.gif?2307873",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1578,7 +1580,7 @@ const items = [
   },
   {
     id: 213,
-    url: "",
+    url: "https://tbib.org//images/1584/a79abb6dba871a2e35c21d507c812aa109fb2a21.gif?2097581",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1586,7 +1588,7 @@ const items = [
   },
   {
     id: 214,
-    url: "",
+    url: "https://tbib.org//images/1583/d6610cde8d8f8aace2538292c6a86c3d0eab8989.gif?2095837",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1594,7 +1596,7 @@ const items = [
   },
   {
     id: 215,
-    url: "",
+    url: "https://tbib.org/thumbnails/1583/thumbnail_c0ce6cf8593c1594fe728d616185b1c090191d87.jpg?2095836",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1602,7 +1604,7 @@ const items = [
   },
   {
     id: 216,
-    url: "",
+    url: "https://tbib.org/thumbnails/1583/thumbnail_8c50c348a29a3bd8301d232207d2573cc225133c.jpg?2095833",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1610,7 +1612,7 @@ const items = [
   },
   {
     id: 217,
-    url: "",
+    url: "https://tbib.org//images/1583/7bff9a9fc32b8f9446ee720d474c98f7270d36fd.gif?2095834",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1618,7 +1620,7 @@ const items = [
   },
   {
     id: 218,
-    url: "",
+    url: "https://tbib.org//images/1561/2b2398d456b955c600629d2bb4a10233ef238fbe.gif?2074480",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1626,7 +1628,7 @@ const items = [
   },
   {
     id: 219,
-    url: "",
+    url: "https://tbib.org//images/1561/299dd5e63aeaa187d092c1486b092a9cac0c0811.gif?2074454",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1634,7 +1636,7 @@ const items = [
   },
   {
     id: 220,
-    url: "",
+    url: "https://tbib.org//images/1529/05b9475d8aa1a6751f378f4ccf28a629122a76ed.gif?2042663",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1642,95 +1644,95 @@ const items = [
   },
   {
     id: 221,
-    url: "",
+    url: "https://media.tenor.com/scO2EF2cTWwAAAAM/tamanna-hot.gif",
     title:
-      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
+      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy tamanna actress",
     category: "18+",
     type: "gif",
   },
   {
     id: 222,
-    url: "",
+    url: "https://i.pixxxels.cc/63T6Wmk4/Tamanna-Piss.gif",
     title:
-      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
+      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy tamanna actress",
     category: "18+",
     type: "gif",
   },
   {
     id: 223,
-    url: "",
+    url: "https://i.pixxxels.cc/K8h8BfH5/Madhuri-Su-Su2.gif",
     title:
-      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
+      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy actress",
     category: "18+",
     type: "gif",
   },
   {
     id: 224,
-    url: "",
+    url: "https://i.postimg.cc/k5dRMqCq/Disha-Diwali.gif",
     title:
-      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
+      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy actress",
     category: "18+",
     type: "gif",
   },
   {
     id: 225,
-    url: "",
+    url: "https://i.pixxxels.cc/Y9pTFBqt/11-Tamanna-Anal1.gif",
     title:
-      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
+      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy actress",
     category: "18+",
     type: "gif",
   },
   {
     id: 226,
-    url: "",
+    url: "https://i.pixxxels.cc/CKt8dSmn/Tamanna-Fucking1.gif",
     title:
-      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
+      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy actress",
     category: "18+",
     type: "gif",
   },
   {
     id: 227,
-    url: "",
+    url: "https://i.pixxxels.cc/Dy2dKfpv/12-Tamanna-Lully-Pop.gif",
     title:
-      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
+      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy actress",
     category: "18+",
     type: "gif",
   },
   {
     id: 228,
-    url: "",
+    url: "https://i.pixxxels.cc/G36shLpw/10-Tamanna-Anal-2.gif",
     title:
-      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
+      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy actress",
     category: "18+",
     type: "gif",
   },
   {
     id: 229,
-    url: "",
+    url: "https://porngipfy.com/wp-content/uploads/2018/12/pussy-slapping_001-12.gif",
     title:
-      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
+      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy actress",
     category: "18+",
     type: "gif",
   },
   {
     id: 230,
-    url: "",
+    url: "https://i.pixxxels.cc/6615BYY8/13-Tamanna-Twin.gif",
     title:
-      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
+      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy actress",
     category: "18+",
     type: "gif",
   },
   {
     id: 231,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/bbcc17d68cdc5028b7f0399b81d82433.gif",
     title:
-      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
+      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy test",
     category: "18+",
     type: "gif",
   },
   {
     id: 232,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/9ff7c48e281b70fd7a75aca7da2f6257.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1738,7 +1740,7 @@ const items = [
   },
   {
     id: 233,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/197b8d793ec68589ce2245fa064f7404.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1746,7 +1748,7 @@ const items = [
   },
   {
     id: 234,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/273b3fb2dea05d473b6be751ebedf906.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1754,7 +1756,7 @@ const items = [
   },
   {
     id: 235,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/ad6fba90148ef6506cfd2c4dd8da9fef.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1762,7 +1764,7 @@ const items = [
   },
   {
     id: 236,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/e8de6fbadafa0e2007c99701d64d10f0.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1770,7 +1772,7 @@ const items = [
   },
   {
     id: 237,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/e4cb9b8d4e099a2f888618ba794d4e4e.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1778,7 +1780,7 @@ const items = [
   },
   {
     id: 238,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/62b14cf663ab36f39f53e9def7ba39a4.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1786,7 +1788,7 @@ const items = [
   },
   {
     id: 239,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/216886079576fc18c70ab52428e522b9.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1794,7 +1796,7 @@ const items = [
   },
   {
     id: 240,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/2e01614661478bcd8e74fa65a0fb9b1e.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1802,7 +1804,7 @@ const items = [
   },
   {
     id: 241,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/ae93bded2c1961456d72cd6c174eb351.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1810,7 +1812,7 @@ const items = [
   },
   {
     id: 242,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/ebe6c73331c538784b585b2f65f0067d.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1818,7 +1820,7 @@ const items = [
   },
   {
     id: 243,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/29810e24d5cac5c290177cdb527623a7.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1826,7 +1828,7 @@ const items = [
   },
   {
     id: 244,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/72d67202272706aeb75479bf7c869fe0.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1834,7 +1836,7 @@ const items = [
   },
   {
     id: 245,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/f683a72eb4c028e26ad619fc9e717f93.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1842,7 +1844,7 @@ const items = [
   },
   {
     id: 246,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/47d727b1dd13343869a6511c97201bc9.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1850,7 +1852,7 @@ const items = [
   },
   {
     id: 247,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/bb313eb726f4c073b7b09706b3cf0f2b.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1858,7 +1860,7 @@ const items = [
   },
   {
     id: 248,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/72d67202272706aeb75479bf7c869fe0.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1866,7 +1868,7 @@ const items = [
   },
   {
     id: 249,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/8f7908ea49d50d3d301c9d4df98f37de.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1874,7 +1876,7 @@ const items = [
   },
   {
     id: 250,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/c5baf0ca06dbce6439702d24fae57cb8.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1882,7 +1884,7 @@ const items = [
   },
   {
     id: 251,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/30be7cc8e0560ba2b6a745f082d1e2f9.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1890,7 +1892,7 @@ const items = [
   },
   {
     id: 252,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/cf996c06d8caeb63744376ec33a4cb26.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1898,7 +1900,7 @@ const items = [
   },
   {
     id: 253,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/b1d3906a929ea5fd183aeab6a7d3191c.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1906,7 +1908,7 @@ const items = [
   },
   {
     id: 254,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/0da1f1a09af5da59a5f6d3cadb73c8b2.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1914,7 +1916,7 @@ const items = [
   },
   {
     id: 255,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/dd1d581eb40348b8f81569e12aaf3b9a.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1922,7 +1924,7 @@ const items = [
   },
   {
     id: 256,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/ad0c09bbaa28e0cc6415b142a4938ef8.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1930,7 +1932,7 @@ const items = [
   },
   {
     id: 257,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/8e7b7262aa91277f8ba8c0b9638e0648.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1954,7 +1956,7 @@ const items = [
   },
   {
     id: 260,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/732ad88d520e55b0261895d21fc06e29.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1962,7 +1964,7 @@ const items = [
   },
   {
     id: 261,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/9ece245d164afdc7dc918f9c0738e236.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1970,7 +1972,7 @@ const items = [
   },
   {
     id: 262,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/463a6ed09451dbeb0c1b858ae71c633c.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1978,7 +1980,7 @@ const items = [
   },
   {
     id: 263,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/a1a550427907433f037a0b25d9a23840.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1986,7 +1988,7 @@ const items = [
   },
   {
     id: 264,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/e7a47052e3aae6d63c451ecf7c5de7ba.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -1994,63 +1996,63 @@ const items = [
   },
   {
     id: 265,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/8a0e12426a363f035ebe671af657a882.gif",
     title:
-      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
+      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy UpSkirt",
     category: "18+",
     type: "gif",
   },
   {
     id: 266,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/085da8cc9ea8bea9f09802d2a9f96bc8.gif",
     title:
-      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
+      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy UpSkirt",
     category: "18+",
     type: "gif",
   },
   {
     id: 267,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/6a955f7981e8ef690de5f3817c37c4a7.gif",
     title:
-      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
+      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy UpSkirt",
     category: "18+",
     type: "gif",
   },
   {
     id: 268,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/83c371f2886a4a6242e3f3ae6874e448.gif",
     title:
-      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
+      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy UpSkirt",
     category: "18+",
     type: "gif",
   },
   {
     id: 269,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/c28325a33cc3b774d6ec2ac7b8629b24.gif",
     title:
-      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
+      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy UpSkirt",
     category: "18+",
     type: "gif",
   },
   {
     id: 270,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/f75618b612f94aede707fc9c2882d035.gif",
     title:
-      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
+      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy UpSkirt",
     category: "18+",
     type: "gif",
   },
   {
     id: 271,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/b67f6822a3762405253bf6003a79a976.gif",
     title:
-      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
+      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy UpSkirt",
     category: "18+",
     type: "gif",
   },
   {
     id: 272,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/bdb02d3b9ab41650773b2797ff6e793c.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -2058,7 +2060,7 @@ const items = [
   },
   {
     id: 273,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/ef2f2240df620b96528a295a9ccd7e3e.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -2066,7 +2068,7 @@ const items = [
   },
   {
     id: 274,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/8b2114712c1214e1bbb11551b21018be.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -2074,7 +2076,7 @@ const items = [
   },
   {
     id: 275,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/9e2d9bc013d101d8bc62c5777c89f910.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -2082,15 +2084,15 @@ const items = [
   },
   {
     id: 276,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/760d5ed86be6112bd7998393f03e362a.gif",
     title:
-      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
+      "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy upskirt",
     category: "18+",
     type: "gif",
   },
   {
     id: 277,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/a03dbb89900ca1157ea90e1921c90937.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -2098,7 +2100,7 @@ const items = [
   },
   {
     id: 278,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/a19c1288059fcd42224e3b28a0650de3.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -2106,7 +2108,7 @@ const items = [
   },
   {
     id: 279,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/1fb0d42fb91242b3073c8f8bd92ef75e.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -2114,7 +2116,7 @@ const items = [
   },
   {
     id: 280,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/ecc829169f6bb8939116d743157a3238.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -2122,7 +2124,7 @@ const items = [
   },
   {
     id: 281,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/155c234014dc62b3cc7b8466aff89e57.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -2130,7 +2132,7 @@ const items = [
   },
   {
     id: 282,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/35690ec8dd0b13aabd3d4c140d36086e.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -2138,7 +2140,7 @@ const items = [
   },
   {
     id: 283,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/5d46b8a76aa98fb24678d577e9d0af8b.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -2146,7 +2148,7 @@ const items = [
   },
   {
     id: 284,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/dabf789e3a0701f9c83d5ec84c450475.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -2154,7 +2156,7 @@ const items = [
   },
   {
     id: 285,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/8bf64ecc1c7ad1da96532c933e5957b7.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -2162,7 +2164,7 @@ const items = [
   },
   {
     id: 286,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/321b0a72844aab4235e97021bd4cc52f.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -2170,7 +2172,7 @@ const items = [
   },
   {
     id: 287,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/133c0f45bdde206bbcb32fb218d8b0c3.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -2178,7 +2180,7 @@ const items = [
   },
   {
     id: 288,
-    url: "",
+    url: "https://myteenwebcam.com/fapp/gifs/92ca6652a40f27a10daf0a81b805f2ee.gif",
     title:
       "Trending Hot girl Cute girl anime girl beautiful hot 4k hd porn sex squirt piss girl pussy",
     category: "18+",
@@ -2588,6 +2590,8 @@ const shuffleArray = (array) => {
 };
 
 const GifSec = () => {
+  const { category } = useParams();
+  const navigate = useNavigate();
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
   const [showWarning, setShowWarning] = useState(false);
@@ -2626,12 +2630,23 @@ const GifSec = () => {
   };
 
   const handleCategorySelect = (category) => {
-    if (category === "18+") {
-      setShowWarning(true);
-    } else {
+    if (category !== selectedCategory) {
       setSelectedCategory(category);
-      localStorage.setItem("selectedCategory", category);
+      setShuffledItems([]);
+      navigate(`/gif/${category === "All" ? "all" : category.toLowerCase()}`);
+      localStorage.setItem("selectedCategory", category); // Save category selection
     }
+  };
+
+  useEffect(() => {
+    fetchCategoryItems(selectedCategory);
+  }, [selectedCategory]);
+
+  const fetchCategoryItems = async (category) => {
+    const filteredItems = items.filter(
+      (item) => category === "All" || item.category === category
+    );
+    setShuffledItems(shuffleArray(filteredItems));
   };
 
   const handleItemClick = (item) => {
@@ -2683,6 +2698,7 @@ const GifSec = () => {
 
     return matchesCategory && matchesSearch;
   });
+
   const copyEmbedCode = (embedCode) => {
     navigator.clipboard.writeText(embedCode).then(
       () => {
@@ -2786,16 +2802,16 @@ const GifSec = () => {
         <div className="sidebarMenu">
           <h3 className="sidebarTitle">Select Category</h3>
           {categories.map((category, index) => (
-            <a
+            <Link
               key={index}
-              href="#"
+              to={`/gif/${category === "All" ? "all" : category.toLowerCase()}`}
               className={`sidebarMenuItem ${
                 selectedCategory === category ? "active" : ""
               }`}
               onClick={() => handleCategorySelect(category)}
             >
               {category}
-            </a>
+            </Link>
           ))}
         </div>
       </div>
