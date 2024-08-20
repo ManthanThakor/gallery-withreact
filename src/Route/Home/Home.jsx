@@ -10,9 +10,6 @@ import Hslide from "../../components/Home/Hslide";
 const Home = () => {
   return (
     <div className="App">
-      <header className="App-header">
-        <h1>Image Gallery</h1>
-      </header>
       <main className="App-main">
         <WelcomeSection />
         <ImageGallery />

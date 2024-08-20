@@ -12,29 +12,31 @@ import GIf from "./Route/Gif/GIf";
 function App() {
   return (
     <Router>
-      <Navbar /> {/* Ensure Navbar is rendered on all pages */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route
-          path="/gif"
-          element={
-            <ErrorBoundary>
-              <GIf />
-            </ErrorBoundary>
-          }
-        />
-        <Route
-          path="/gif/:category"
-          element={
-            <ErrorBoundary>
-              <GifSec />
-            </ErrorBoundary>
-          }
-        />
-        <Route path="/favorites" element={<Fav />} />
-        {/* <Route path="/gallery" element={<Gallery />} /> */}
-        {/* <Route path="/contact" element={<Contact />} /> */}
-      </Routes>
+      <Navbar />
+      <div className="middle">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route
+            path="/gif"
+            element={
+              <ErrorBoundary>
+                <GIf />
+              </ErrorBoundary>
+            }
+          />
+          <Route
+            path="/gif/:category"
+            element={
+              <ErrorBoundary>
+                <GifSec />
+              </ErrorBoundary>
+            }
+          />
+          <Route path="/favorites" element={<Fav />} />
+          {/* <Route path="/gallery" element={<Gallery />} /> */}
+          {/* <Route path="/contact" element={<Contact />} /> */}
+        </Routes>
+      </div>
       <footer className="App-footer">
         &copy; 2024 Image Gallery. All rights reserved.
       </footer>
