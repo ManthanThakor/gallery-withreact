@@ -13,6 +13,7 @@ const images = {
 
 const Feature = () => {
   const [currentImage, setCurrentImage] = useState(images.experience);
+  const [hoveredService, setHoveredService] = useState(null);
 
   return (
     <div className="container">
@@ -26,7 +27,11 @@ const Feature = () => {
           <div className="feature-1">
             <div
               className="service"
-              onMouseEnter={() => setCurrentImage(images.experience)}
+              onMouseEnter={() => {
+                setCurrentImage(images.experience);
+                setHoveredService("experience");
+              }}
+              onMouseLeave={() => setHoveredService(null)}
             >
               <div className="icon">
                 <i className="fas fa-gem"></i>
@@ -39,7 +44,11 @@ const Feature = () => {
             </div>
             <div
               className="service"
-              onMouseEnter={() => setCurrentImage(images.teams)}
+              onMouseEnter={() => {
+                setCurrentImage(images.teams);
+                setHoveredService("teams");
+              }}
+              onMouseLeave={() => setHoveredService(null)}
             >
               <div className="icon">
                 <i className="fas fa-user-cog"></i>
@@ -54,7 +63,11 @@ const Feature = () => {
           <div className="feature-2">
             <div
               className="service"
-              onMouseEnter={() => setCurrentImage(images.nft)}
+              onMouseEnter={() => {
+                setCurrentImage(images.nft);
+                setHoveredService("nft");
+              }}
+              onMouseLeave={() => setHoveredService(null)}
             >
               <div className="icon">
                 <i className="fas fa-coins"></i>
@@ -67,7 +80,11 @@ const Feature = () => {
             </div>
             <div
               className="service"
-              onMouseEnter={() => setCurrentImage(images.client)}
+              onMouseEnter={() => {
+                setCurrentImage(images.client);
+                setHoveredService("client");
+              }}
+              onMouseLeave={() => setHoveredService(null)}
             >
               <div className="icon">
                 <i className="fas fa-globe-americas"></i>
@@ -82,8 +99,10 @@ const Feature = () => {
         </div>
       </div>
       <div className="feature-rightside">
-        <div className="image">
-          <img src={currentImage} alt="Service Image" className="fade" />
+        <div
+          className={`image ${hoveredService ? `hover-${hoveredService}` : ""}`}
+        >
+          <img src={currentImage} alt="Service Image" />
           <div className="download">
             <i className="fas fa-download"></i>
           </div>

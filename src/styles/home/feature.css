@@ -113,3 +113,23 @@
   transition: transform 1s ease, opacity 1s ease, filter 1s ease;
   opacity: 1;
 }
+
+/* New keyframes for swipe effect */
+@keyframes swipe {
+  0% {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  100% {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+/* Updated hover class for animation */
+.hover-experience img,
+.hover-teams img,
+.hover-nft img,
+.hover-client img {
+  animation: swipe 3s infinite ease-in-out; /* Right to left reveal */
+  filter: brightness(1.3) contrast(1.2);
+}
