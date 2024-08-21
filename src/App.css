@@ -15,20 +15,15 @@ body {
 }
 
 .App-footer {
-  position: fixed;
   bottom: 0;
-  left: 0;
   background-color: #1e1e1e;
   padding: 10px;
   color: white;
   width: 100%;
   text-align: center;
-  z-index: 1000; /* Ensure it sits on top of other elements */
 }
 
 .middle {
   padding-top: 80px;
-  padding-bottom: 80px;
-
   background: linear-gradient(to right, #1e1e1e, #2c2c2c);
 }

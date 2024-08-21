@@ -4,6 +4,7 @@ import "./Home.css";
 import ImageGallery from "../../components/ImageGallery";
 import Hslide from "../../components/Home/Hslide";
 import WelcomeSection from "../../components/Home/WelcomeSection";
+import Feature from "../../components/Home/Feature";
 
 // import WallpaperCard from "../../components/HomeWallpaper";
 
@@ -12,8 +13,9 @@ const Home = () => {
     <div className="App">
       <main className="App-main">
         <WelcomeSection />
-        <ImageGallery />
       </main>
+      <Feature />
+
       <div className="slide-home">
         <Hslide />
       </div>

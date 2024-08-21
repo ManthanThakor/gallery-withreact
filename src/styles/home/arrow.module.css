@@ -29,8 +29,7 @@
 
 .customPrevArrow:hover,
 .customNextArrow:hover {
-  background: rgba(0, 0, 0, 1);
-  transform: scale(1.1);
+  background: rgba(249, 20, 20, 0.705);
 }
 
 .customPrevArrow:focus,
