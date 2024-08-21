@@ -2,8 +2,8 @@
 import React from "react";
 import "./Home.css";
 import ImageGallery from "../../components/ImageGallery";
-import WelcomeSection from "../../components/WelcomeSection";
 import Hslide from "../../components/Home/Hslide";
+import WelcomeSection from "../../components/Home/WelcomeSection";
 
 // import WallpaperCard from "../../components/HomeWallpaper";
 

@@ -1,6 +1,6 @@
 import React from "react";
 import Slider from "./Slider";
-import styles from "../styles/welcomeSection.module.css";
+import styles from "../../styles/home/welcomeSection.module.css";
 
 const WelcomeSection = () => {
   return (

@@ -42,7 +42,7 @@
   max-width: 600px;
 }
 
-@keyframes fadeIn {
+/* @keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(-20px);
@@ -51,4 +51,4 @@
     opacity: 1;
     transform: translateY(0);
   }
-}
+} */
