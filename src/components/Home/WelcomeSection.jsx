@@ -14,7 +14,7 @@ const WelcomeSection = () => {
       </div>
       <div className={styles.content}>
         <div className={styles.welcomeText}>
-          <h2>Welcome to GlimVid</h2>
+          <h2>Welcome to GLIMVID</h2>
           <p>
             Explore our collection of stunning images, GIFs, and videos. Enjoy
             the experience!

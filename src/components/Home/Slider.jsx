@@ -4,6 +4,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { PrevArrow, NextArrow } from "./Arrow";
 import styles from "../../styles/home/slider.module.css";
+import "magic.css/dist/magic.css";
 
 const images = [
   {
@@ -23,18 +24,45 @@ const images = [
   },
 ];
 
+const CustomDots = (dots) => (
+  <div
+    style={{
+      position: "absolute",
+      bottom: "40px",
+      width: "100%",
+      textAlign: "center",
+    }}
+  >
+    <ul
+      style={{
+        listStyle: "none",
+        padding: 0,
+        margin: 0,
+        display: "flex",
+        justifyContent: "center",
+        gap: "10px",
+      }}
+    >
+      {dots.map((dot, index) => (
+        <li
+          key={index}
+          style={{
+            display: "inline-block",
+            margin: 0,
+            position: "relative",
+          }}
+        >
+          {dot}
+        </li>
+      ))}
+    </ul>
+  </div>
+);
+
 const SliderComponent = () => {
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
   useEffect(() => {
-    // Check if images are loaded
-    const img = new Image();
-    img.onload = () => setImagesLoaded(true);
-    img.onerror = () => setImagesLoaded(false);
-
-    img.src = images[0]?.url; // Test the first image
-
-    // Alternatively, preload all images
     Promise.all(
       images.map(
         (image) =>
@@ -50,6 +78,44 @@ const SliderComponent = () => {
       .catch(() => setImagesLoaded(false));
   }, []);
 
+  const customDot = (props) => {
+    const isActive = props.className.includes("slick-active");
+
+    return (
+      <button
+        {...props}
+        style={{
+          width: "15px",
+          height: "15px",
+          borderRadius: "50%",
+          position: "relative",
+          backgroundColor: isActive ? "#FF0000" : "transparent",
+          border: isActive ? "2px solid #FF0000" : "3px solid #fff",
+          transition: "all 0.3s ease",
+          cursor: "pointer",
+          display: "inline-block",
+          transform: isActive ? "scale(1.2)" : "scale(1)",
+          boxShadow: isActive ? "0 0 5px rgba(255, 20, 0, 0.8)" : "none",
+          opacity: isActive ? 1 : 0.7,
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.backgroundColor = "#FF0000";
+          e.currentTarget.style.transform = "scale(1.5)";
+          e.currentTarget.style.boxShadow = "0 0 10px rgba(255, 20, 0, 0.8)";
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.backgroundColor = isActive
+            ? "#FF0000"
+            : "transparent";
+          e.currentTarget.style.transform = "scale(1)";
+          e.currentTarget.style.boxShadow = isActive
+            ? "0 0 5px rgba(255, 20, 0, 0.8)"
+            : "none";
+        }}
+      />
+    );
+  };
+
   const settings = {
     dots: true,
     infinite: true,
@@ -60,6 +126,9 @@ const SliderComponent = () => {
     autoplaySpeed: 3000,
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
+    appendDots: CustomDots,
+    customPaging: (i) => customDot({ className: "slick-dots", index: i }),
+    dotsClass: "slick-dots slick-thumb",
   };
 
   return (

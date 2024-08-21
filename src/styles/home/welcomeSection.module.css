@@ -1,4 +1,6 @@
 /* src/styles/welcomeSection.module.css */
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap");
+
 .welcomeSection {
   display: flex;
   align-items: center;
@@ -8,13 +10,19 @@
   box-shadow: 0 0px 12px rgba(0, 0, 0, 0.5);
   margin-bottom: 20px;
   animation: fadeIn 1s ease-in-out;
+  background: linear-gradient(rgba(0, 0, 0, 0.758), rgba(0, 0, 0, 0.758)),
+    url(https://png.pngtree.com/background/20230611/original/pngtree-anime-girl-in-red-and-on-fire-hd-wallpaper-picture-image_3170738.jpg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
+
 .logoContainer {
   padding-left: 100px;
 }
+
 .content {
   display: flex;
-  justify-content: space-between;
   justify-content: center;
   flex-direction: column;
   align-items: center;
@@ -24,17 +32,21 @@
 .welcomeText {
   flex: 1;
   padding: 20px;
+  text-align: center;
+  font-family: "Bebas Neue", sans-serif;
 }
 
 .welcomeText h2 {
-  font-size: 2rem;
+  font-size: 3rem; /* Increased size for more impact */
   margin-bottom: 10px;
   color: #f0f0f0;
+  text-transform: uppercase; /* Capitalizes the text */
 }
 
 .welcomeText p {
   font-size: 1.25rem;
   color: #d0d0d0;
+  text-transform: uppercase; /* Capitalizes the text */
 }
 
 .slider {
@@ -42,7 +54,7 @@
   max-width: 600px;
 }
 
-/* @keyframes fadeIn {
+@keyframes fadeIn {
   from {
     opacity: 0;
     transform: translateY(-20px);
@@ -51,4 +63,4 @@
     opacity: 1;
     transform: translateY(0);
   }
-} */
+}
