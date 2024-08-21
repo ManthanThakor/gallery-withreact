@@ -24,38 +24,66 @@ const images = [
   },
 ];
 
-const CustomDots = (dots) => (
+const CustomDots = ({ dots }) => (
   <div
     style={{
       position: "absolute",
-      bottom: "40px",
+      bottom: "20px",
       width: "100%",
       textAlign: "center",
     }}
   >
-    <ul
+    <div
       style={{
-        listStyle: "none",
-        padding: 0,
-        margin: 0,
         display: "flex",
         justifyContent: "center",
         gap: "10px",
       }}
     >
       {dots.map((dot, index) => (
-        <li
+        <div
           key={index}
           style={{
+            width: "15px",
+            height: "15px",
+            borderRadius: "50%",
+            backgroundColor: dot.props.className.includes("slick-active")
+              ? "#000000 "
+              : "transparent",
+            border: dot.props.className.includes("slick-active")
+              ? "2px solid #FF0000"
+              : "3px solid #fff",
+            transition: "all 0.3s ease",
+            cursor: "pointer",
             display: "inline-block",
-            margin: 0,
-            position: "relative",
+            transform: dot.props.className.includes("slick-active")
+              ? "scale(1.2)"
+              : "scale(1)",
+            boxShadow: dot.props.className.includes("slick-active")
+              ? "0 0 5px rgba(255, 20, 0, 0.8)"
+              : "none",
+            opacity: dot.props.className.includes("slick-active") ? 1 : 0.7,
           }}
-        >
-          {dot}
-        </li>
+          onMouseEnter={(e) => {
+            e.currentTarget.style.backgroundColor = "#000000 ";
+            e.currentTarget.style.transform = "scale(1.5)";
+            e.currentTarget.style.boxShadow = "0 0 10px rgba(255, 20, 0, 0.8)";
+          }}
+          onMouseLeave={(e) => {
+            e.currentTarget.style.backgroundColor =
+              dot.props.className.includes("slick-active")
+                ? "#000000 "
+                : "transparent";
+            e.currentTarget.style.transform = "scale(1)";
+            e.currentTarget.style.boxShadow = dot.props.className.includes(
+              "slick-active"
+            )
+              ? "#000000 "
+              : "none";
+          }}
+        />
       ))}
-    </ul>
+    </div>
   </div>
 );
 
@@ -78,44 +106,6 @@ const SliderComponent = () => {
       .catch(() => setImagesLoaded(false));
   }, []);
 
-  const customDot = (props) => {
-    const isActive = props.className.includes("slick-active");
-
-    return (
-      <button
-        {...props}
-        style={{
-          width: "15px",
-          height: "15px",
-          borderRadius: "50%",
-          position: "relative",
-          backgroundColor: isActive ? "#FF0000" : "transparent",
-          border: isActive ? "2px solid #FF0000" : "3px solid #fff",
-          transition: "all 0.3s ease",
-          cursor: "pointer",
-          display: "inline-block",
-          transform: isActive ? "scale(1.2)" : "scale(1)",
-          boxShadow: isActive ? "0 0 5px rgba(255, 20, 0, 0.8)" : "none",
-          opacity: isActive ? 1 : 0.7,
-        }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.backgroundColor = "#FF0000";
-          e.currentTarget.style.transform = "scale(1.5)";
-          e.currentTarget.style.boxShadow = "0 0 10px rgba(255, 20, 0, 0.8)";
-        }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.backgroundColor = isActive
-            ? "#FF0000"
-            : "transparent";
-          e.currentTarget.style.transform = "scale(1)";
-          e.currentTarget.style.boxShadow = isActive
-            ? "0 0 5px rgba(255, 20, 0, 0.8)"
-            : "none";
-        }}
-      />
-    );
-  };
-
   const settings = {
     dots: true,
     infinite: true,
@@ -126,8 +116,14 @@ const SliderComponent = () => {
     autoplaySpeed: 3000,
     prevArrow: <PrevArrow />,
     nextArrow: <NextArrow />,
-    appendDots: CustomDots,
-    customPaging: (i) => customDot({ className: "slick-dots", index: i }),
+    appendDots: (dots) => <CustomDots dots={dots} />,
+    customPaging: (i) => (
+      <button
+        style={{
+          display: "none", // Hide the default dots
+        }}
+      />
+    ),
     dotsClass: "slick-dots slick-thumb",
   };
 

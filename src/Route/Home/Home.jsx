@@ -1,12 +1,9 @@
 // src/components/Home.js
 import React from "react";
 import "./Home.css";
-import ImageGallery from "../../components/ImageGallery";
 import Hslide from "../../components/Home/Hslide";
 import WelcomeSection from "../../components/Home/WelcomeSection";
 import Feature from "../../components/Home/Feature";
-
-// import WallpaperCard from "../../components/HomeWallpaper";
 
 const Home = () => {
   return (
@@ -14,8 +11,9 @@ const Home = () => {
       <main className="App-main">
         <WelcomeSection />
       </main>
-      <Feature />
-
+      <div>
+        <Feature />
+      </div>
       <div className="slide-home">
         <Hslide />
       </div>
