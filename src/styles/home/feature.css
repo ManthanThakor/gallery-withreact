@@ -6,12 +6,18 @@
   justify-content: space-between;
   align-items: center;
 
-  padding: 50px;
+  padding: 50px 100px;
   background-color: #222;
   color: #fff;
-  /* font-family: "Arial", sans-serif; */
+  gap: 30px;
 }
 
+.title-fe {
+  font-family: "Bebas Neue", sans-serif;
+  font-size: 3rem;
+  color: #f0f0f0;
+  margin-bottom: 10px;
+}
 .title {
   font-size: 32px;
   font-weight: bold;
@@ -30,10 +36,10 @@
 }
 
 .content {
-  width: 40%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  margin-top: 20px;
 }
 
 .service {
@@ -59,12 +65,15 @@
 }
 
 .image {
-  width: 50%;
   position: relative;
 }
 
 .image img {
-  width: 100%;
+  width: 500px;
+  height: 500px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 2ch;
 }
 
 .download {
@@ -85,6 +94,7 @@
 .service {
   display: flex;
   flex-direction: column;
+  padding: 20px;
 }
 .feature-1 {
   display: flex;
