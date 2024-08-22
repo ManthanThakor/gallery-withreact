@@ -5,6 +5,8 @@ export const ImageGallery = () => {
     <>
         <div>ImageGallery</div>
     <div>ImageGallery</div>
+    <div>ImageGallery</div>
+
     </>
   )
 }
