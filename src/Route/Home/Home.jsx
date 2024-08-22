@@ -4,7 +4,6 @@ import "./Home.css";
 import Hslide from "../../components/Home/Hslide";
 import WelcomeSection from "../../components/Home/WelcomeSection";
 import Feature from "../../components/Home/Feature";
-import Coolsl from "../../components/Home/Coolsl";
 
 const Home = () => {
   return (
@@ -15,9 +14,6 @@ const Home = () => {
       <div>
         <div>
           <Feature />
-        </div>
-        <div>
-          <Coolsl />
         </div>
       </div>
       <div className="slide-home">
