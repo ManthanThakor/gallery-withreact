@@ -8,6 +8,7 @@ import GifSec from "./components/Gif/GifSec";
 import ErrorBoundary from "./components/Gif/ERROR/ErrorBoundary";
 import Fav from "./Route/Fav/Fav";
 import GIf from "./Route/Gif/GIf";
+import ContactuS from "./Route/ContactUs/ContactuS";
 
 function App() {
   return (
@@ -34,7 +35,7 @@ function App() {
           />
           <Route path="/favorites" element={<Fav />} />
           {/* <Route path="/gallery" element={<Gallery />} /> */}
-          {/* <Route path="/contact" element={<Contact />} /> */}
+          <Route path="/contact" element={<ContactuS />} />
         </Routes>
       </div>
       <footer className="App-footer">

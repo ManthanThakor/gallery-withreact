@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "../../styles/gif/GifCard.module.css";
+import styles from "../../styles/gif/Gifcard.module.css";
 
 const GifCard = ({ gif, blurEnabled }) => {
   // Check if gif.url exists; log an error if it's missing
