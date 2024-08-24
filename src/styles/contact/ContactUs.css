@@ -28,7 +28,7 @@ body {
     opacity: 0.3; /* Darker background for a dark theme */
     filter: blur(8px);
   }
-  
+
   .container {
     max-width: 1100px;
     width: 100%;
@@ -211,3 +211,7 @@ body {
     }
   }
   
+
+.ab {
+  color: #000;
+}
