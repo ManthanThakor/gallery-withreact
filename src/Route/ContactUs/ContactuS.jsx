@@ -24,13 +24,13 @@ const ContactuS = () => {
     
       return (
         <div className="enhanced-landing-page">
-          <div className="container">
+          <div className="container-cont">
             <img
               className="background-image"
               src="https://workik-widget-assets.s3.amazonaws.com/widget-assets/images/clothes-bg.png"
               alt="Background"
             />
-            <div className="content-container">
+            <div className="content-container-cont">
               <div className="text-section">
                 <div className="content-box">
                   <p className="section-header">Lorem ipsum amet dolor</p>
