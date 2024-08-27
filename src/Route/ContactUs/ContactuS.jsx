@@ -23,7 +23,13 @@ const ContactuS = () => {
       };
     
       return (
+        <> 
+          <div className="contact-us-sec">
+            <h1 className="contact-us-title">Contact Us</h1>
+            
+          </div>
         <div className="enhanced-landing-page">
+        
           <div className="container-cont">
             
             <div className="content-container-cont">
@@ -133,6 +139,8 @@ const ContactuS = () => {
             </div>
           </div>
         </div>
+        </>
+
       );
     };
 
