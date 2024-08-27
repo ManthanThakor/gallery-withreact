@@ -17,17 +17,6 @@ body {
     position: relative;
   }
   
-  .background-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1;
-    opacity: 0.3; /* Darker background for a dark theme */
-    filter: blur(8px);
-  }
 
   .container-cont {
     max-width: 1100px;
@@ -62,6 +51,17 @@ body {
     animation: slideInUp 1s ease-out;
   }
   
+  .text-section{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .content-box{
+    gap:30px;
+    display: flex;
+    flex-direction: column;
+
+  }
   /* Text Content */
   .section-header {
     font-size: 28px;
@@ -75,11 +75,17 @@ body {
     color: #bbbbbb;
     margin-bottom: 30px;
   }
-  
+  .icon {
+    font-size: 24px;
+    margin-right: 0px;
+    filter: invert(48%) sepia(92%) saturate(3434%) hue-rotate(90deg) brightness(104%) contrast(97%);
+
+}
   /* Social Icons */
   .social-icons {
     display: flex;
     gap: 15px;
+    justify-content: center;
   }
   
   .social-icon {
@@ -97,13 +103,13 @@ body {
   .social-icon img {
     width: 20px;
     height: 20px;
-    filter: invert(1); /* Makes icon suitable for dark background */
-  }
+  
+    }
   
   .social-icon:hover {
-    background-color: #007bff;
+    background-color: #000000;
     transform: scale(1.1);
-    box-shadow: 0 0 10px #007bff;
+    box-shadow: 0 0 10px #56bb04;
   }
   
   /* Form Styles */
@@ -140,7 +146,7 @@ body {
   
   .input-field,
   .textarea-field {
-    width: 100%;
+    width: 93%;
     padding: 15px;
     margin: 10px 0;
     border: 1px solid #333;
