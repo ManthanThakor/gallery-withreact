@@ -16,7 +16,7 @@ function App() {
       <Navbar />
       <div className="middle">
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" Component={Home} />
           <Route
             path="/gif"
             element={
