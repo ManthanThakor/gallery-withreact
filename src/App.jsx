@@ -9,6 +9,7 @@ import ErrorBoundary from "./components/Gif/ERROR/ErrorBoundary";
 import Fav from "./Route/Fav/Fav";
 import GIf from "./Route/Gif/GIf";
 import ContactuS from "./Route/ContactUs/ContactuS";
+import ImageGalleryR from "./Route/Image-Gallery/ImageGalleryR";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
       <div className="middle">
         <Routes>
           <Route path="/" Component={Home} />
+          <Route path="/gallery" element={<ImageGalleryR />} />
           <Route
             path="/gif"
             element={

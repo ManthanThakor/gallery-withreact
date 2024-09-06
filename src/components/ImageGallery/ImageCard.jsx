@@ -1,6 +1,6 @@
 // src/components/ImageCard.js
 import React from "react";
-import styles from "../styles/imageCard.module.css"; // Importing CSS Module
+import styles from "../../styles/image-Gall/imageCard.module.css"; // Importing CSS Module
 import { VscEyeClosed } from "react-icons/vsc";
 
 const ImageCard = ({ image, blurEnabled }) => {

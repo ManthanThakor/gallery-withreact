@@ -1,6 +1,6 @@
 // src/components/ImageGallery.js
 import React, { useEffect, useState } from "react";
-import styles from "../styles/imageGallery.module.css";
+import styles from "../../styles/image-Gall/imageGallery.module.css";
 import ImageCard from "./ImageCard";
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import { VscEyeClosed } from "react-icons/vsc";
@@ -368,7 +368,7 @@ const images = [
   },
   {
     id: 61,
-    url: "",
+    url: "https://tbib.org//samples/1289/sample_0bff97d473b7e0eb4ec7cd7b45e398e6c81c01de.jpg?17368923",
     title: "Hot girl pussy",
     category: "18+",
   },
@@ -433,7 +433,7 @@ const ImageGallery = () => {
   });
 
   return (
-    <div className={styles.container}>
+    <div className={styles.containerImg}>
       <input
         type="text"
         placeholder="Search images..."
