@@ -10,6 +10,7 @@ import Fav from "./Route/Fav/Fav";
 import GIf from "./Route/Gif/GIf";
 import ContactuS from "./Route/ContactUs/ContactuS";
 import ImageGalleryR from "./Route/Image-Gallery/ImageGalleryR";
+import VideoG from "./Route/Video/VideoG";
 
 function App() {
   return (
@@ -19,6 +20,8 @@ function App() {
         <Routes>
           <Route path="/" Component={Home} />
           <Route path="/gallery" element={<ImageGalleryR />} />
+          <Route path="/video" element={<VideoG />} />
+
           <Route
             path="/gif"
             element={

@@ -28,6 +28,9 @@ const Navbar = () => {
             <Link to="/gif">Gif</Link>
           </li>
           <li>
+            <Link to="/video">Video</Link>
+          </li>
+          <li>
             <Link to="/favorites">Favorites</Link>
           </li>
           <li>

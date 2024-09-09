@@ -1,0 +1,85 @@
+[
+  {
+    "id": 1,
+    "category": "trending",
+    "title": "Trending Video 1",
+    "videoUrl": "https://media.istockphoto.com/id/1140675444/video/young-surfer-ripping-gnarly-turn.mp4?s=mp4-640x640-is&k=20&c=Y8S6HPimKxeMPx8DPAbqrjayjLvxlkScIuNO5lkcLXM="
+  },
+  {
+    "id": 2,
+    "category": "18+",
+    "title": "18+ Video 1",
+    "videoUrl": "hthttps://xhamster.desi/videos/big-ass-stepmom-agrees-to-share-bed-with-stepson-angel-cruz-sarah-black-xhnQh7b",
+    "thumbnail": "https://example.com/thumb2.jpg"
+  },
+  {
+    "id": 3,
+    "category": "all",
+    "title": "General Video 1",
+    "videoUrl": "https://example.com/general1.mp4",
+    "thumbnail": "https://example.com/thumb3.jpg"
+  },
+  {
+    "id": 4,
+    "category": "trending",
+    "title": "Trending Video 2",
+    "videoUrl": "https://example.com/trending2.mp4",
+    "thumbnail": "https://example.com/thumb4.jpg"
+  },
+  {
+    "id": 5,
+    "category": "trending",
+    "title": "Trending Video 1",
+    "videoUrl": "https://example.com/trending1.mp4",
+    "thumbnail": "https://example.com/thumb1.jpg"
+  },
+  {
+    "id": 6,
+    "category": "18+",
+    "title": "18+ Video 1",
+    "videoUrl": "https://example.com/adult1.mp4",
+    "thumbnail": "https://example.com/thumb2.jpg"
+  },
+  {
+    "id": 7,
+    "category": "all",
+    "title": "General Video 1",
+    "videoUrl": "https://example.com/general1.mp4",
+    "thumbnail": "https://example.com/thumb3.jpg"
+  },
+  {
+    "id": 8,
+    "category": "trending",
+    "title": "Trending Video 2",
+    "videoUrl": "https://example.com/trending2.mp4",
+    "thumbnail": "https://example.com/thumb4.jpg"
+  },
+  {
+    "id": 9,
+    "category": "trending",
+    "title": "Trending Video 1",
+    "videoUrl": "https://example.com/trending1.mp4",
+    "thumbnail": "https://example.com/thumb1.jpg"
+  },
+  {
+    "id": 10,
+    "category": "18+",
+    "title": "18+ Video 1",
+    "videoUrl": "https://example.com/adult1.mp4",
+    "thumbnail": "https://example.com/thumb2.jpg"
+  },
+  {
+    "id": 11,
+    "category": "all",
+    "title": "General Video 1",
+    "videoUrl": "https://www.pexels.com/video/a-girl-is-standing-in-front-of-a-video-game-4841878/",
+    "thumbnail": "https://example.com/thumb3.jpg"
+  },
+  {
+    "id": 12,
+    "category": "trending",
+    "title": "Trending Video 2",
+    "videoUrl": "https://example.com/trending2.mp4",
+    "thumbnail": "https://example.com/thumb4.jpg"
+  }
+]
