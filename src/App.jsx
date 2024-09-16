@@ -10,7 +10,7 @@ import Fav from "./Route/Fav/Fav";
 import GIf from "./Route/Gif/GIf";
 import ContactuS from "./Route/ContactUs/ContactuS";
 import ImageGalleryR from "./Route/Image-Gallery/ImageGalleryR";
-import VideoG from "./Route/Video/VideoG";
+import VideoGRoute from "./Route/Video/VideoGRoute";
 
 function App() {
   return (
@@ -18,10 +18,15 @@ function App() {
       <Navbar />
       <div className="middle">
         <Routes>
-          <Route path="/" Component={Home} />
+          <Route path="/" element={<Home />} />
           <Route path="/gallery" element={<ImageGalleryR />} />
-          <Route path="/video" element={<VideoG />} />
-
+          <Route path="/video/:categoryId" element={<VideoGRoute />} />{" "}
+          {/* Corrected VideoG route */}
+          <Route
+            path="/video/:categoryId/:videoId"
+            element={<VideoGRoute />}
+          />{" "}
+          {/* Video details route */}
           <Route
             path="/gif"
             element={
@@ -39,7 +44,6 @@ function App() {
             }
           />
           <Route path="/favorites" element={<Fav />} />
-          {/* <Route path="/gallery" element={<Gallery />} /> */}
           <Route path="/contact" element={<ContactuS />} />
         </Routes>
       </div>

@@ -28,7 +28,7 @@ const Navbar = () => {
             <Link to="/gif">Gif</Link>
           </li>
           <li>
-            <Link to="/video">Video</Link>
+            <Link to="/video/all">Video</Link> {/* Link updated */}
           </li>
           <li>
             <Link to="/favorites">Favorites</Link>
