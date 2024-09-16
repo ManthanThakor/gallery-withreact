@@ -79,11 +79,24 @@ const VideoGallery = () => {
       <div className="video-list">
         {videos.map((video) => (
           <div key={video.id} className="video-card">
+            {/* Thumbnail */}
+            {video.thumbnail ? (
+              <img
+                className="video-thumbnail"
+                src={video.thumbnail}
+                alt={video.title}
+              />
+            ) : (
+              <img
+                className="video-thumbnail"
+                src="https://via.placeholder.com/150" // Fallback thumbnail
+                alt="Default thumbnail"
+              />
+            )}
             <h3>{video.title}</h3>
             {video.videoUrl.includes("youtube.com") ? (
               <iframe
-                width="560"
-                height="315"
+                className="iframe-sec"
                 src={`https://www.youtube.com/embed/${
                   video.videoUrl.split("v=")[1]
                 }`}
@@ -92,7 +105,7 @@ const VideoGallery = () => {
                 allowFullScreen
               ></iframe>
             ) : (
-              <video width="560" controls>
+              <video className="videosec" controls>
                 <source src={video.videoUrl} type="video/mp4" />
                 Your browser does not support the video tag.
               </video>
