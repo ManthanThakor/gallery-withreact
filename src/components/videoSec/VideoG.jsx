@@ -65,9 +65,10 @@ const VideoG = () => {
 
   const handleVideoSelect = (video) => {
     if (selectedVideo && selectedVideo.id === video.id) return;
+
     setSelectedVideo(video);
     navigate(`/video/${category.toLowerCase()}/${video.id}`);
-    fetchSuggestedVideos(video.category);
+    fetchSuggestedVideos(video.category, video.id);
   };
 
   const handleBackToList = () => {
@@ -76,13 +77,12 @@ const VideoG = () => {
     navigate(`/video/${category.toLowerCase()}`);
   };
 
-  const fetchSuggestedVideos = (category) => {
+  const fetchSuggestedVideos = (category, excludeVideoId) => {
     if (!category) return;
     const suggested = videoData
       .filter(
         (video) =>
-          video.category.includes(category) &&
-          video.id !== (selectedVideo ? selectedVideo.id : null)
+          video.category.includes(category) && video.id !== excludeVideoId
       )
       .slice(0, 5);
     setSuggestedVideos(suggested);
