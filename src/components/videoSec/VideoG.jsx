@@ -54,6 +54,7 @@ const VideoG = () => {
       currentPage * VIDEOS_PER_PAGE
     );
 
+    console.log("Current Page:", currentPage); // Debugging line
     console.log("Fetched videos:", paginatedVideos); // Debugging line
     setVideos(paginatedVideos);
   }, [category, searchQuery, currentPage]);
@@ -63,8 +64,7 @@ const VideoG = () => {
       setCategory(categoryId);
     }
     setCurrentPage(1); // Reset to the first page when category changes
-    fetchVideos();
-  }, [categoryId, fetchVideos]);
+  }, [categoryId]);
 
   useEffect(() => {
     fetchVideos();
