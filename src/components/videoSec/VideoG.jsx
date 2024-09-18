@@ -35,7 +35,6 @@ const VideoG = () => {
   const fetchSuggestedVideos = useCallback(() => {
     if (!selectedVideo) return;
 
-    // Filter by category and exclude the currently selected video
     const suggested = videoData.filter(
       (video) =>
         video.category === selectedVideo.category &&
@@ -43,10 +42,12 @@ const VideoG = () => {
     );
 
     setSuggestedVideos(suggested);
-  }, [selectedVideo]);
+  }, [selectedVideo]); // Only depend on 'selectedVideo'
 
   // Fetch videos with infinite scrolling
   const fetchVideos = useCallback(() => {
+    if (!hasMore || loading) return; // Avoid fetching if there's no more data or already loading
+
     setLoading(true);
 
     const filteredVideos = videoData.filter((video) => {
@@ -60,7 +61,7 @@ const VideoG = () => {
     setVideos((prevVideos) => [...prevVideos, ...filteredVideos]);
     setLoading(false);
     setHasMore(filteredVideos.length > 0);
-  }, [category, searchQuery]);
+  }, [category, searchQuery, hasMore, loading]); // Add relevant dependencies
 
   useEffect(() => {
     if (categoryId) {
