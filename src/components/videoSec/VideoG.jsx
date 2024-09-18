@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../../styles/videoGallery/VideoGallery.css";
 import videoData from "./videoData.json";
 
 const categories = ["Trending", "18+"]; // Removed "All" category
+const VIDEOS_PER_LOAD = 12; // Load 12 videos at a time
 
 const VideoG = () => {
   const { categoryId, videoId } = useParams();
@@ -11,25 +12,14 @@ const VideoG = () => {
 
   const [videos, setVideos] = useState([]);
   const [category, setCategory] = useState(categoryId || categories[0]); // Default to the first category
-  const [loading, setLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedVideo, setSelectedVideo] = useState(() => {
     const storedVideo = localStorage.getItem("selectedVideo");
     return storedVideo ? JSON.parse(storedVideo) : null;
   });
   const [suggestedVideos, setSuggestedVideos] = useState([]);
-
-  // Debounced fetch handler
-  const debounce = (func, delay) => {
-    let timer;
-    return (...args) => {
-      if (timer) clearTimeout(timer);
-      timer = setTimeout(() => {
-        func.apply(this, args);
-      }, delay);
-    };
-  };
+  const [currentPage, setCurrentPage] = useState(1); // Keep track of pagination
+  const observerRef = useRef(); // Ref for the intersection observer
 
   // Fetch suggested videos based on the selected video's category
   const fetchSuggestedVideos = useCallback(() => {
@@ -42,40 +32,34 @@ const VideoG = () => {
     );
 
     setSuggestedVideos(suggested);
-  }, [selectedVideo]); // Only depend on 'selectedVideo'
+  }, [selectedVideo]);
 
-  // Fetch videos with infinite scrolling
+  // Fetch videos for the selected category and search query
   const fetchVideos = useCallback(() => {
-    if (!hasMore || loading) return; // Avoid fetching if there's no more data or already loading
+    const filteredVideos = videoData
+      .filter((video) => {
+        const matchesCategory = video.category.includes(category);
+        const matchesSearchQuery = video.title
+          .toLowerCase()
+          .includes(searchQuery.toLowerCase());
+        return matchesCategory && matchesSearchQuery;
+      })
+      .slice(0, currentPage * VIDEOS_PER_LOAD); // Fetch only required number of videos
 
-    setLoading(true);
-
-    const filteredVideos = videoData.filter((video) => {
-      const matchesCategory = video.category.includes(category);
-      const matchesSearchQuery = video.title
-        .toLowerCase()
-        .includes(searchQuery.toLowerCase());
-      return matchesCategory && matchesSearchQuery;
-    });
-
-    setVideos((prevVideos) => [...prevVideos, ...filteredVideos]);
-    setLoading(false);
-    setHasMore(filteredVideos.length > 0);
-  }, [category, searchQuery, hasMore, loading]); // Add relevant dependencies
+    setVideos(filteredVideos);
+  }, [category, searchQuery, currentPage]);
 
   useEffect(() => {
     if (categoryId) {
       setCategory(categoryId);
     }
-    setVideos([]); // Reset videos on category change
+    setCurrentPage(1); // Reset page when category changes
     fetchVideos();
   }, [categoryId, fetchVideos]);
 
   useEffect(() => {
-    setVideos([]); // Reset videos on search query change
-    setHasMore(true);
     fetchVideos();
-  }, [searchQuery, fetchVideos]);
+  }, [searchQuery, currentPage, fetchVideos]);
 
   useEffect(() => {
     if (videoId) {
@@ -99,8 +83,7 @@ const VideoG = () => {
 
   const handleCategorySelect = (newCategory) => {
     setCategory(newCategory);
-    setVideos([]);
-    setHasMore(true);
+    setCurrentPage(1); // Reset to the first page when category changes
     navigate(`/video/${newCategory.toLowerCase()}`);
   };
 
@@ -119,21 +102,38 @@ const VideoG = () => {
     navigate(`/video/${category.toLowerCase()}`);
   };
 
-  const handleScroll = debounce(() => {
-    if (
-      window.innerHeight + window.scrollY >=
-        document.documentElement.scrollHeight - 2 &&
-      !loading &&
-      hasMore
-    ) {
-      fetchVideos();
-    }
-  }, 300);
-
+  // Infinite scrolling logic using Intersection Observer
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [loading, hasMore]);
+    if (observerRef.current) observerRef.current.disconnect();
+
+    const lastVideoElement = document.querySelector(".video-card:last-child");
+
+    observerRef.current = new IntersectionObserver(
+      (entries) => {
+        if (entries[0].isIntersecting) {
+          console.log("Last video is visible, loading more videos...");
+          setCurrentPage((prevPage) => prevPage + 1); // Increment page
+        }
+      },
+      { threshold: 1.0 }
+    );
+
+    if (lastVideoElement) {
+      observerRef.current.observe(lastVideoElement);
+    } else {
+      console.log("No last video element found.");
+    }
+
+    return () => {
+      if (observerRef.current) observerRef.current.disconnect();
+    };
+  }, [videos]);
+
+  // Add a console.log to check how videos are updating
+  useEffect(() => {
+    console.log("Current page:", currentPage);
+    console.log("Videos after fetching:", videos);
+  }, [videos, currentPage]);
 
   return (
     <div className="video-gallery">
@@ -215,8 +215,6 @@ const VideoG = () => {
               </div>
             ))}
           </div>
-
-          {loading && <div className="loading">Loading...</div>}
         </>
       )}
     </div>
