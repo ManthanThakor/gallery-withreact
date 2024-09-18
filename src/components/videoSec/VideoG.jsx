@@ -3,62 +3,102 @@ import { useNavigate, useParams } from "react-router-dom";
 import "../../styles/videoGallery/VideoGallery.css";
 import videoData from "./videoData.json";
 
-const categories = ["All", "Trending", "18+"];
+const categories = ["Trending", "18+"]; // Removed "All" category
 
 const VideoG = () => {
-  const { categoryId } = useParams(); // Get category from URL
-  const [videos, setVideos] = useState([]);
-  const [category, setCategory] = useState(categoryId || "All");
-  const [loading, setLoading] = useState(false);
-  const [hasMore, setHasMore] = useState(true);
-  const [selectedVideo, setSelectedVideo] = useState(null);
-  const [suggestedVideos, setSuggestedVideos] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
-
+  const { categoryId, videoId } = useParams();
   const navigate = useNavigate();
 
+  const [videos, setVideos] = useState([]);
+  const [category, setCategory] = useState(categoryId || categories[0]); // Default to the first category
+  const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedVideo, setSelectedVideo] = useState(() => {
+    const storedVideo = localStorage.getItem("selectedVideo");
+    return storedVideo ? JSON.parse(storedVideo) : null;
+  });
+  const [suggestedVideos, setSuggestedVideos] = useState([]);
+
+  // Debounced fetch handler
+  const debounce = (func, delay) => {
+    let timer;
+    return (...args) => {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => {
+        func.apply(this, args);
+      }, delay);
+    };
+  };
+
+  // Fetch suggested videos based on the selected video's category
+  const fetchSuggestedVideos = useCallback(() => {
+    if (!selectedVideo) return;
+
+    // Filter by category and exclude the currently selected video
+    const suggested = videoData.filter(
+      (video) =>
+        video.category === selectedVideo.category &&
+        video.id !== selectedVideo.id
+    );
+
+    setSuggestedVideos(suggested);
+  }, [selectedVideo]);
+
+  // Fetch videos with infinite scrolling
   const fetchVideos = useCallback(() => {
     setLoading(true);
 
-    // Fetch videos based on category and search query
     const filteredVideos = videoData.filter((video) => {
-      const matchesCategory =
-        category === "All" || video.category.includes(category);
+      const matchesCategory = video.category.includes(category);
       const matchesSearchQuery = video.title
         .toLowerCase()
         .includes(searchQuery.toLowerCase());
       return matchesCategory && matchesSearchQuery;
     });
 
-    setVideos(filteredVideos);
+    setVideos((prevVideos) => [...prevVideos, ...filteredVideos]);
     setLoading(false);
     setHasMore(filteredVideos.length > 0);
   }, [category, searchQuery]);
 
   useEffect(() => {
-    setVideos([]); // Reset videos when category changes
-    setHasMore(true);
-    setSelectedVideo(null);
-    setSuggestedVideos([]);
-    fetchVideos();
-  }, [category, fetchVideos]);
-
-  useEffect(() => {
     if (categoryId) {
       setCategory(categoryId);
-      setVideos([]); // Reset videos
-      setHasMore(true);
     }
-  }, [categoryId]);
+    setVideos([]); // Reset videos on category change
+    fetchVideos();
+  }, [categoryId, fetchVideos]);
 
   useEffect(() => {
-    setVideos([]); // Clear videos on search query change
+    setVideos([]); // Reset videos on search query change
     setHasMore(true);
     fetchVideos();
   }, [searchQuery, fetchVideos]);
 
+  useEffect(() => {
+    if (videoId) {
+      const video = videoData.find((v) => v.id === videoId);
+      if (video) {
+        setSelectedVideo(video);
+        localStorage.setItem("selectedVideo", JSON.stringify(video));
+      }
+    } else {
+      setSelectedVideo(null);
+      localStorage.removeItem("selectedVideo");
+      setSuggestedVideos([]);
+    }
+  }, [videoId]);
+
+  useEffect(() => {
+    if (selectedVideo) {
+      fetchSuggestedVideos();
+    }
+  }, [selectedVideo, fetchSuggestedVideos]);
+
   const handleCategorySelect = (newCategory) => {
-    setVideos([]); // Clear current videos
+    setCategory(newCategory);
+    setVideos([]);
     setHasMore(true);
     navigate(`/video/${newCategory.toLowerCase()}`);
   };
@@ -67,37 +107,27 @@ const VideoG = () => {
     if (selectedVideo && selectedVideo.id === video.id) return;
 
     setSelectedVideo(video);
+    localStorage.setItem("selectedVideo", JSON.stringify(video));
     navigate(`/video/${category.toLowerCase()}/${video.id}`);
-    fetchSuggestedVideos(video.category, video.id);
   };
 
   const handleBackToList = () => {
     setSelectedVideo(null);
+    localStorage.removeItem("selectedVideo");
     setSuggestedVideos([]);
     navigate(`/video/${category.toLowerCase()}`);
   };
 
-  const fetchSuggestedVideos = (category, excludeVideoId) => {
-    if (!category) return;
-    const suggested = videoData
-      .filter(
-        (video) =>
-          video.category.includes(category) && video.id !== excludeVideoId
-      )
-      .slice(0, 5);
-    setSuggestedVideos(suggested);
-  };
-
-  const handleScroll = () => {
+  const handleScroll = debounce(() => {
     if (
       window.innerHeight + window.scrollY >=
         document.documentElement.scrollHeight - 2 &&
       !loading &&
       hasMore
     ) {
-      fetchVideos(); // Fetch more videos when the user scrolls to the bottom
+      fetchVideos();
     }
-  };
+  }, 300);
 
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -112,7 +142,7 @@ const VideoG = () => {
             Back to List
           </button>
           <h1>{selectedVideo.title}</h1>
-          <video className="video-player" controls>
+          <video key={selectedVideo.videoUrl} className="video-player" controls>
             <source src={selectedVideo.videoUrl} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
@@ -121,20 +151,24 @@ const VideoG = () => {
           <div className="suggestions">
             <h2>Suggested Videos</h2>
             <div className="suggested-list">
-              {suggestedVideos.map((video) => (
-                <div
-                  key={video.id}
-                  className="video-card"
-                  onClick={() => handleVideoSelect(video)}
-                >
-                  <img
-                    className="video-thumbnail"
-                    src={video.thumbnail || "https://via.placeholder.com/150"}
-                    alt={video.title}
-                  />
-                  <h3 className="video-title">{video.title}</h3>
-                </div>
-              ))}
+              {suggestedVideos.length > 0 ? (
+                suggestedVideos.map((video) => (
+                  <div
+                    key={video.id}
+                    className="video-card"
+                    onClick={() => handleVideoSelect(video)}
+                  >
+                    <img
+                      className="video-thumbnail"
+                      src={video.thumbnail || "https://via.placeholder.com/150"}
+                      alt={video.title}
+                    />
+                    <h3 className="video-title">{video.title}</h3>
+                  </div>
+                ))
+              ) : (
+                <p>No suggestions available.</p>
+              )}
             </div>
           </div>
         </div>
