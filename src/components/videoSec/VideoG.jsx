@@ -1,25 +1,25 @@
-import React, { useState, useEffect, useCallback, useRef } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../../styles/videoGallery/VideoGallery.css";
 import videoData from "./videoData.json";
 
-const categories = ["Trending", "18+"]; // Removed "All" category
-const VIDEOS_PER_LOAD = 12; // Load 12 videos at a time
+const categories = ["Trending", "18+"];
+const VIDEOS_PER_PAGE = 12; // Number of videos per page
 
 const VideoG = () => {
   const { categoryId, videoId } = useParams();
   const navigate = useNavigate();
 
   const [videos, setVideos] = useState([]);
-  const [category, setCategory] = useState(categoryId || categories[0]); // Default to the first category
+  const [category, setCategory] = useState(categoryId || categories[0]);
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedVideo, setSelectedVideo] = useState(() => {
     const storedVideo = localStorage.getItem("selectedVideo");
     return storedVideo ? JSON.parse(storedVideo) : null;
   });
   const [suggestedVideos, setSuggestedVideos] = useState([]);
-  const [currentPage, setCurrentPage] = useState(1); // Keep track of pagination
-  const observerRef = useRef(); // Ref for the intersection observer
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1); // Total pages for pagination
 
   // Fetch suggested videos based on the selected video's category
   const fetchSuggestedVideos = useCallback(() => {
@@ -36,24 +36,33 @@ const VideoG = () => {
 
   // Fetch videos for the selected category and search query
   const fetchVideos = useCallback(() => {
-    const filteredVideos = videoData
-      .filter((video) => {
-        const matchesCategory = video.category.includes(category);
-        const matchesSearchQuery = video.title
-          .toLowerCase()
-          .includes(searchQuery.toLowerCase());
-        return matchesCategory && matchesSearchQuery;
-      })
-      .slice(0, currentPage * VIDEOS_PER_LOAD); // Fetch only required number of videos
+    const filteredVideos = videoData.filter((video) => {
+      const matchesCategory = video.category.includes(category);
+      const matchesSearchQuery = video.title
+        .toLowerCase()
+        .includes(searchQuery.toLowerCase());
+      return matchesCategory && matchesSearchQuery;
+    });
 
-    setVideos(filteredVideos);
+    // Calculate pagination details
+    const totalPages = Math.ceil(filteredVideos.length / VIDEOS_PER_PAGE);
+    setTotalPages(totalPages);
+
+    // Fetch only videos for the current page
+    const paginatedVideos = filteredVideos.slice(
+      (currentPage - 1) * VIDEOS_PER_PAGE,
+      currentPage * VIDEOS_PER_PAGE
+    );
+
+    console.log("Fetched videos:", paginatedVideos); // Debugging line
+    setVideos(paginatedVideos);
   }, [category, searchQuery, currentPage]);
 
   useEffect(() => {
     if (categoryId) {
       setCategory(categoryId);
     }
-    setCurrentPage(1); // Reset page when category changes
+    setCurrentPage(1); // Reset to the first page when category changes
     fetchVideos();
   }, [categoryId, fetchVideos]);
 
@@ -102,38 +111,11 @@ const VideoG = () => {
     navigate(`/video/${category.toLowerCase()}`);
   };
 
-  // Infinite scrolling logic using Intersection Observer
-  useEffect(() => {
-    if (observerRef.current) observerRef.current.disconnect();
-
-    const lastVideoElement = document.querySelector(".video-card:last-child");
-
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          console.log("Last video is visible, loading more videos...");
-          setCurrentPage((prevPage) => prevPage + 1); // Increment page
-        }
-      },
-      { threshold: 1.0 }
-    );
-
-    if (lastVideoElement) {
-      observerRef.current.observe(lastVideoElement);
-    } else {
-      console.log("No last video element found.");
+  const handlePageChange = (page) => {
+    if (page >= 1 && page <= totalPages) {
+      setCurrentPage(page);
     }
-
-    return () => {
-      if (observerRef.current) observerRef.current.disconnect();
-    };
-  }, [videos]);
-
-  // Add a console.log to check how videos are updating
-  useEffect(() => {
-    console.log("Current page:", currentPage);
-    console.log("Videos after fetching:", videos);
-  }, [videos, currentPage]);
+  };
 
   return (
     <div className="video-gallery">
@@ -213,6 +195,21 @@ const VideoG = () => {
                 />
                 <h3 className="video-title">{video.title}</h3>
               </div>
+            ))}
+          </div>
+
+          {/* Pagination Controls */}
+          <div className="pagination-controls">
+            {Array.from({ length: totalPages }, (_, index) => (
+              <button
+                key={index + 1}
+                className={`pagination-button ${
+                  currentPage === index + 1 ? "active" : ""
+                }`}
+                onClick={() => handlePageChange(index + 1)}
+              >
+                {index + 1}
+              </button>
             ))}
           </div>
         </>
