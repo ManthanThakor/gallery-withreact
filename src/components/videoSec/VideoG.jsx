@@ -4,7 +4,8 @@ import "../../styles/videoGallery/VideoGallery.css";
 import videoData from "./videoData.json";
 
 const categories = ["Trending", "18+", "3D", "Wallpaper"];
-const VIDEOS_PER_PAGE = 12; // Number of videos per page
+const VIDEOS_PER_PAGE = 12;
+const VIDEO_QUALITY_OPTIONS = ["video_480p", "video_720p", "video_1080p"];
 
 const VideoG = () => {
   const { categoryId, videoId } = useParams();
@@ -19,9 +20,9 @@ const VideoG = () => {
   });
   const [suggestedVideos, setSuggestedVideos] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1); // Total pages for pagination
+  const [totalPages, setTotalPages] = useState(1);
+  const [selectedQuality, setSelectedQuality] = useState("video_720p");
 
-  // Fetch suggested videos based on the selected video's category
   const fetchSuggestedVideos = useCallback(() => {
     if (!selectedVideo) return;
 
@@ -34,7 +35,6 @@ const VideoG = () => {
     setSuggestedVideos(suggested);
   }, [selectedVideo]);
 
-  // Fetch videos for the selected category and search query
   const fetchVideos = useCallback(() => {
     const filteredVideos = videoData.filter((video) => {
       const matchesCategory = video.category.includes(category);
@@ -44,18 +44,14 @@ const VideoG = () => {
       return matchesCategory && matchesSearchQuery;
     });
 
-    // Calculate pagination details
     const totalPages = Math.ceil(filteredVideos.length / VIDEOS_PER_PAGE);
     setTotalPages(totalPages);
 
-    // Fetch only videos for the current page
     const paginatedVideos = filteredVideos.slice(
       (currentPage - 1) * VIDEOS_PER_PAGE,
       currentPage * VIDEOS_PER_PAGE
     );
 
-    console.log("Current Page:", currentPage); // Debugging line
-    console.log("Fetched videos:", paginatedVideos); // Debugging line
     setVideos(paginatedVideos);
   }, [category, searchQuery, currentPage]);
 
@@ -63,7 +59,7 @@ const VideoG = () => {
     if (categoryId) {
       setCategory(categoryId);
     }
-    setCurrentPage(1); // Reset to the first page when category changes
+    setCurrentPage(1);
   }, [categoryId]);
 
   useEffect(() => {
@@ -72,7 +68,7 @@ const VideoG = () => {
 
   useEffect(() => {
     if (videoId) {
-      const video = videoData.find((v) => v.id === videoId);
+      const video = videoData.find((v) => v.id === Number(videoId));
       if (video) {
         setSelectedVideo(video);
         localStorage.setItem("selectedVideo", JSON.stringify(video));
@@ -92,7 +88,7 @@ const VideoG = () => {
 
   const handleCategorySelect = (newCategory) => {
     setCategory(newCategory);
-    setCurrentPage(1); // Reset to the first page when category changes
+    setCurrentPage(1);
     navigate(`/video/${newCategory.toLowerCase()}`);
   };
 
@@ -117,6 +113,10 @@ const VideoG = () => {
     }
   };
 
+  const handleQualityChange = (event) => {
+    setSelectedQuality(event.target.value);
+  };
+
   return (
     <div className="video-gallery">
       {selectedVideo ? (
@@ -125,8 +125,30 @@ const VideoG = () => {
             Back to List
           </button>
           <h1>{selectedVideo.title}</h1>
-          <video key={selectedVideo.videoUrl} className="video-player" controls>
-            <source src={selectedVideo.videoUrl} type="video/mp4" />
+
+          {/* Video Quality Selector */}
+          <div className="quality-selector">
+            <label htmlFor="video-quality">Select Quality: </label>
+            <select
+              id="video-quality"
+              value={selectedQuality}
+              onChange={handleQualityChange}
+            >
+              {VIDEO_QUALITY_OPTIONS.map((quality) => (
+                <option key={quality} value={quality}>
+                  {quality.replace("video_", "")}
+                </option>
+              ))}
+            </select>
+          </div>
+
+          {/* Update video key to force re-render */}
+          <video
+            key={selectedVideo.id + selectedQuality} // Change key to force re-render
+            className="video-player"
+            controls
+          >
+            <source src={selectedVideo[selectedQuality]} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
 
