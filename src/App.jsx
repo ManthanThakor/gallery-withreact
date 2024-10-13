@@ -28,7 +28,7 @@ function App() {
           />{" "}
           {/* Video details route */}
           <Route
-            path="/gif"
+            path="/gif/all"
             element={
               <ErrorBoundary>
                 <GIf />

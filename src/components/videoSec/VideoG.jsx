@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import "../../styles/videoGallery/VideoGallery.css";
 import videoData from "./videoData.json";
 
-const categories = ["Trending", "18+"];
+const categories = ["Trending", "18+", "3D", "Wallpaper"];
 const VIDEOS_PER_PAGE = 12; // Number of videos per page
 
 const VideoG = () => {

@@ -25,7 +25,7 @@ const Navbar = () => {
             <Link to="/gallery">Gallery</Link>
           </li>
           <li>
-            <Link to="/gif">Gif</Link>
+            <Link to="/gif/all">Gif</Link>
           </li>
           <li>
             <Link to="/video/trending">Video</Link> {/* Link updated */}
