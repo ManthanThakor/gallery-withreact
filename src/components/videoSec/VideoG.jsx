@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import "../../styles/videoGallery/VideoGallery.css";
 import videoData from "./videoData.json";
+import CustomVideoPlayer from "./CustomVideoPlayer";
 
 const categories = ["Trending", "18+", "3D", "Wallpaper"];
 const VIDEOS_PER_PAGE = 12;
@@ -120,14 +121,7 @@ const VideoG = () => {
           </button>
           <h1>{selectedVideo.title}</h1>
 
-          <video
-            className="video-player"
-            controls
-            onError={() => console.error("Failed to load video")}
-          >
-            <source src={selectedVideo?.videoUrl} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+          <CustomVideoPlayer videoUrl={selectedVideo?.videoUrl} />
 
           {/* Suggested Videos */}
           <div className="suggestions">
