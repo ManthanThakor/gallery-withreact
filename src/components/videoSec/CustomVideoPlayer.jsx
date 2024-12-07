@@ -10,6 +10,7 @@ const CustomVideoPlayer = ({ videoUrl }) => {
   const [volume, setVolume] = useState(1); // Range from 0 to 1
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const [speed, setSpeed] = useState(1); // Default speed is 1x
 
   // Handle Play/Pause
   const handlePlayPause = () => {
@@ -69,6 +70,27 @@ const CustomVideoPlayer = ({ videoUrl }) => {
     videoRef.current.currentTime = newTime;
   };
 
+  // Skip 10 seconds forward
+  const skipForward = () => {
+    if (videoRef.current) {
+      videoRef.current.currentTime += 10;
+    }
+  };
+
+  // Skip 10 seconds backward
+  const skipBackward = () => {
+    if (videoRef.current) {
+      videoRef.current.currentTime -= 10;
+    }
+  };
+
+  // Handle Speed Change
+  const handleSpeedChange = (event) => {
+    const newSpeed = parseFloat(event.target.value);
+    setSpeed(newSpeed);
+    videoRef.current.playbackRate = newSpeed;
+  };
+
   // Update current time and duration
   const updatePlaybar = () => {
     setCurrentTime(videoRef.current.currentTime);
@@ -87,12 +109,16 @@ const CustomVideoPlayer = ({ videoUrl }) => {
     window.addEventListener("keydown", handleEscapeKey);
 
     // Update playbar on time update
-    videoRef.current.addEventListener("timeupdate", updatePlaybar);
+    if (videoRef.current) {
+      videoRef.current.addEventListener("timeupdate", updatePlaybar);
+    }
 
     // Cleanup on unmount
     return () => {
       window.removeEventListener("keydown", handleEscapeKey);
-      videoRef.current.removeEventListener("timeupdate", updatePlaybar);
+      if (videoRef.current) {
+        videoRef.current.removeEventListener("timeupdate", updatePlaybar);
+      }
     };
   }, []);
 
@@ -133,6 +159,21 @@ const CustomVideoPlayer = ({ videoUrl }) => {
 
         <button onClick={handleFullscreen}>Fullscreen</button>
         <button onClick={handleExitFullscreen}>Exit Fullscreen</button>
+
+        {/* Skip 10 seconds backward and forward */}
+        <button onClick={skipBackward}>-10s</button>
+        <button onClick={skipForward}>+10s</button>
+
+        {/* Video Speed Control */}
+        <div className="speed-control">
+          <label>Speed:</label>
+          <select value={speed} onChange={handleSpeedChange}>
+            <option value={0.5}>0.5x</option>
+            <option value={1}>1x</option>
+            <option value={1.5}>1.5x</option>
+            <option value={2}>2x</option>
+          </select>
+        </div>
       </div>
     </div>
   );
