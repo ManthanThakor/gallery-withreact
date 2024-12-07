@@ -5,7 +5,6 @@ import videoData from "./videoData.json";
 
 const categories = ["Trending", "18+", "3D", "Wallpaper"];
 const VIDEOS_PER_PAGE = 12;
-const VIDEO_QUALITY_OPTIONS = ["video_480p", "video_720p", "video_1080p"];
 
 const VideoG = () => {
   const { categoryId, videoId } = useParams();
@@ -21,7 +20,6 @@ const VideoG = () => {
   const [suggestedVideos, setSuggestedVideos] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [selectedQuality, setSelectedQuality] = useState("video_720p");
 
   const fetchSuggestedVideos = useCallback(() => {
     if (!selectedVideo) return;
@@ -113,10 +111,6 @@ const VideoG = () => {
     }
   };
 
-  const handleQualityChange = (event) => {
-    setSelectedQuality(event.target.value);
-  };
-
   return (
     <div className="video-gallery">
       {selectedVideo ? (
@@ -126,29 +120,12 @@ const VideoG = () => {
           </button>
           <h1>{selectedVideo.title}</h1>
 
-          {/* Video Quality Selector */}
-          <div className="quality-selector">
-            <label htmlFor="video-quality">Select Quality: </label>
-            <select
-              id="video-quality"
-              value={selectedQuality}
-              onChange={handleQualityChange}
-            >
-              {VIDEO_QUALITY_OPTIONS.map((quality) => (
-                <option key={quality} value={quality}>
-                  {quality.replace("video_", "")}
-                </option>
-              ))}
-            </select>
-          </div>
-
-          {/* Update video key to force re-render */}
           <video
-            key={selectedVideo.id + selectedQuality} // Change key to force re-render
             className="video-player"
             controls
+            onError={() => console.error("Failed to load video")}
           >
-            <source src={selectedVideo[selectedQuality]} type="video/mp4" />
+            <source src={selectedVideo?.videoUrl} type="video/mp4" />
             Your browser does not support the video tag.
           </video>
 

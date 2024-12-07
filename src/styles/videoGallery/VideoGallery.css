@@ -95,3 +95,29 @@
   flex-wrap: wrap;
   gap: 15px;
 }
+
+.video-player-container {
+  position: relative;
+}
+
+.video-player {
+  width: 100%;
+  height: auto;
+}
+.custom-controls {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: opacity 0.3s;
+}
+
+.custom-controls.fullscreen {
+  bottom: 20px; /* Adjust based on your design */
+}
