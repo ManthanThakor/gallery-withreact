@@ -1,178 +1,242 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import dashjs from "dashjs";
+import {
+  FaPlay,
+  FaPause,
+  FaVolumeUp,
+  FaVolumeMute,
+  FaExpand,
+  FaCompress,
+  FaCog,
+} from "react-icons/fa";
 import "../../styles/videoGallery/CustomVideoPlayer.css";
 
-const CustomVideoPlayer = ({ videoUrl }) => {
+const CustomVideoPlayer = ({ videoData }) => {
+  const { videoUrl, type } = videoData;
   const videoRef = useRef(null);
   const playerRef = useRef(null);
+  const dashPlayerRef = useRef(null);
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(false);
-  const [volume, setVolume] = useState(1); // Range from 0 to 1
+  const [volume, setVolume] = useState(1);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const [speed, setSpeed] = useState(1); // Default speed is 1x
-
-  // Handle Play/Pause
-  const handlePlayPause = () => {
-    if (videoRef.current.paused) {
-      videoRef.current.play();
-      setIsPlaying(true);
-    } else {
-      videoRef.current.pause();
-      setIsPlaying(false);
-    }
-  };
-
-  // Handle Mute/Unmute
-  const handleMuteToggle = () => {
-    const newMutedState = !isMuted;
-    setIsMuted(newMutedState);
-    videoRef.current.muted = newMutedState;
-  };
-
-  // Handle Volume Change
-  const handleVolumeChange = (event) => {
-    const newVolume = event.target.value;
-    setVolume(newVolume);
-    videoRef.current.volume = newVolume;
-  };
-
-  // Handle Fullscreen
-  const handleFullscreen = () => {
-    if (playerRef.current.requestFullscreen) {
-      playerRef.current.requestFullscreen();
-    } else if (playerRef.current.webkitRequestFullscreen) {
-      playerRef.current.webkitRequestFullscreen();
-    } else if (playerRef.current.mozRequestFullScreen) {
-      playerRef.current.mozRequestFullScreen();
-    } else if (playerRef.current.msRequestFullscreen) {
-      playerRef.current.msRequestFullscreen();
-    }
-  };
-
-  // Handle Exit Fullscreen
-  const handleExitFullscreen = () => {
-    if (document.exitFullscreen) {
-      document.exitFullscreen();
-    } else if (document.webkitExitFullscreen) {
-      document.webkitExitFullscreen();
-    } else if (document.mozCancelFullScreen) {
-      document.mozCancelFullScreen();
-    } else if (document.msExitFullscreen) {
-      document.msExitFullscreen();
-    }
-  };
-
-  // Handle Playbar Change (Scrubbing)
-  const handlePlaybarChange = (event) => {
-    const newTime = event.target.value;
-    setCurrentTime(newTime);
-    videoRef.current.currentTime = newTime;
-  };
-
-  // Skip 10 seconds forward
-  const skipForward = () => {
-    if (videoRef.current) {
-      videoRef.current.currentTime += 10;
-    }
-  };
-
-  // Skip 10 seconds backward
-  const skipBackward = () => {
-    if (videoRef.current) {
-      videoRef.current.currentTime -= 10;
-    }
-  };
-
-  // Handle Speed Change
-  const handleSpeedChange = (event) => {
-    const newSpeed = parseFloat(event.target.value);
-    setSpeed(newSpeed);
-    videoRef.current.playbackRate = newSpeed;
-  };
-
-  // Update current time and duration
-  const updatePlaybar = () => {
-    setCurrentTime(videoRef.current.currentTime);
-    setDuration(videoRef.current.duration);
-  };
-
-  // Handle Escape key to exit fullscreen
-  const handleEscapeKey = (event) => {
-    if (event.key === "Escape") {
-      handleExitFullscreen();
-    }
-  };
+  const [isFullscreen, setIsFullscreen] = useState(false);
+  const [isControlsVisible, setIsControlsVisible] = useState(true);
+  const [bitrates, setBitrates] = useState([]);
+  const [currentQuality, setCurrentQuality] = useState(-1); // -1 for auto
+  const [isSettingsVisible, setIsSettingsVisible] = useState(false);
 
   useEffect(() => {
-    // Add event listener for Escape key
-    window.addEventListener("keydown", handleEscapeKey);
+    const videoElement = videoRef.current;
 
-    // Update playbar on time update
-    if (videoRef.current) {
-      videoRef.current.addEventListener("timeupdate", updatePlaybar);
+    if (type === "DASH") {
+      const player = dashjs.MediaPlayer().create();
+      dashPlayerRef.current = player;
+      player.initialize(videoElement, videoUrl, true);
+      player.on(dashjs.MediaPlayer.events.STREAM_INITIALIZED, () => {
+        const audioBitrates = player.getBitrateInfoListFor("audio");
+        const videoBitrates = player.getBitrateInfoListFor("video");
+        if (videoBitrates.length > 1) {
+          setBitrates(videoBitrates.map((b) => b.height));
+        }
+      });
+    } else {
+      videoElement.src = videoUrl;
     }
 
-    // Cleanup on unmount
-    return () => {
-      window.removeEventListener("keydown", handleEscapeKey);
-      if (videoRef.current) {
-        videoRef.current.removeEventListener("timeupdate", updatePlaybar);
-      }
+    const handleTimeUpdate = () => {
+      setCurrentTime(videoElement.currentTime);
+      setDuration(videoElement.duration);
     };
-  }, []);
+
+    const handlePlay = () => setIsPlaying(true);
+    const handlePause = () => setIsPlaying(false);
+
+    videoElement.addEventListener("timeupdate", handleTimeUpdate);
+    videoElement.addEventListener("play", handlePlay);
+    videoElement.addEventListener("pause", handlePause);
+
+    return () => {
+      if (dashPlayerRef.current) {
+        dashPlayerRef.current.reset();
+      }
+      videoElement.removeEventListener("timeupdate", handleTimeUpdate);
+      videoElement.removeEventListener("play", handlePlay);
+      videoElement.removeEventListener("pause", handlePause);
+    };
+  }, [videoUrl, type]);
+
+  const togglePlayPause = () => {
+    if (videoRef.current.paused) {
+      videoRef.current.play();
+    } else {
+      videoRef.current.pause();
+    }
+  };
+
+  const toggleMute = () => {
+    videoRef.current.muted = !videoRef.current.muted;
+    setIsMuted(videoRef.current.muted);
+  };
+
+  const handleVolumeChange = (e) => {
+    const newVolume = parseFloat(e.target.value);
+    videoRef.current.volume = newVolume;
+    setVolume(newVolume);
+    setIsMuted(newVolume === 0);
+  };
+
+  const handleProgressChange = (e) => {
+    const newTime = parseFloat(e.target.value);
+    videoRef.current.currentTime = newTime;
+    setCurrentTime(newTime);
+  };
+
+  const formatTime = (timeInSeconds) => {
+    const minutes = Math.floor(timeInSeconds / 60)
+      .toString()
+      .padStart(2, "0");
+    const seconds = Math.floor(timeInSeconds % 60)
+      .toString()
+      .padStart(2, "0");
+    return `${minutes}:${seconds}`;
+  };
+
+  const toggleFullscreen = () => {
+    if (!document.fullscreenElement) {
+      playerRef.current.requestFullscreen().catch((err) => {
+        alert(
+          `Error attempting to enable full-screen mode: ${err.message} (${err.name})`
+        );
+      });
+      setIsFullscreen(true);
+    } else {
+      document.exitFullscreen();
+      setIsFullscreen(false);
+    }
+  };
+
+  const handleQualityChange = (qualityIndex) => {
+    if (dashPlayerRef.current) {
+      dashPlayerRef.current.updateSettings({
+        streaming: {
+          abr: {
+            autoSwitchBitrate: {
+              video: qualityIndex === -1,
+            },
+          },
+        },
+      });
+      if (qualityIndex !== -1) {
+        dashPlayerRef.current.setQualityFor("video", qualityIndex, true);
+      }
+      setCurrentQuality(qualityIndex);
+    }
+    setIsSettingsVisible(false);
+  };
+
+  let hideControlsTimeout;
+  const handleMouseMove = () => {
+    setIsControlsVisible(true);
+    clearTimeout(hideControlsTimeout);
+    hideControlsTimeout = setTimeout(() => {
+      if (isPlaying) {
+        setIsControlsVisible(false);
+        setIsSettingsVisible(false);
+      }
+    }, 3000);
+  };
 
   return (
-    <div ref={playerRef} className="custom-video-player">
-      <video ref={videoRef} className="video-element" src={videoUrl}></video>
-      <div className="video-controls">
-        <button onClick={handlePlayPause}>
-          {isPlaying ? "Pause" : "Play"}
-        </button>
-        <button onClick={handleMuteToggle}>
-          {isMuted ? "Unmute" : "Mute"}
-        </button>
+    <div
+      ref={playerRef}
+      className="video-player-container"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={() => {
+        clearTimeout(hideControlsTimeout);
+        if (isPlaying) {
+          setIsControlsVisible(false);
+          setIsSettingsVisible(false);
+        }
+      }}
+    >
+      <video
+        ref={videoRef}
+        className="video-player"
+        onClick={togglePlayPause}
+      />
 
-        <div className="volume-control">
+      <div className={`controls-overlay ${isControlsVisible ? "visible" : ""}`}>
+        <div className="progress-bar-container">
           <input
             type="range"
             min="0"
-            max="1"
-            step="0.01"
-            value={volume}
-            onChange={handleVolumeChange}
-          />
-        </div>
-
-        <div className="playbar-control">
-          <input
-            type="range"
-            min="0"
-            max={duration}
+            max={duration || 0}
             value={currentTime}
-            onChange={handlePlaybarChange}
+            onChange={handleProgressChange}
+            className="progress-bar"
           />
-          <span>
-            {Math.floor(currentTime)} / {Math.floor(duration)} sec
-          </span>
         </div>
 
-        <button onClick={handleFullscreen}>Fullscreen</button>
-        <button onClick={handleExitFullscreen}>Exit Fullscreen</button>
-
-        {/* Skip 10 seconds backward and forward */}
-        <button onClick={skipBackward}>-10s</button>
-        <button onClick={skipForward}>+10s</button>
-
-        {/* Video Speed Control */}
-        <div className="speed-control">
-          <label>Speed:</label>
-          <select value={speed} onChange={handleSpeedChange}>
-            <option value={0.5}>0.5x</option>
-            <option value={1}>1x</option>
-            <option value={1.5}>1.5x</option>
-            <option value={2}>2x</option>
-          </select>
+        <div className="controls-bar">
+          <div className="controls-left">
+            <button onClick={togglePlayPause} className="control-button">
+              {isPlaying ? <FaPause /> : <FaPlay />}
+            </button>
+            <div className="volume-container">
+              <button onClick={toggleMute} className="control-button">
+                {isMuted ? <FaVolumeMute /> : <FaVolumeUp />}
+              </button>
+              <input
+                type="range"
+                min="0"
+                max="1"
+                step="0.05"
+                value={volume}
+                onChange={handleVolumeChange}
+                className="volume-slider"
+              />
+            </div>
+            <span className="time-display">
+              {formatTime(currentTime)} / {formatTime(duration)}
+            </span>
+          </div>
+          <div className="controls-right">
+            {bitrates.length > 0 && (
+              <div className="settings-container">
+                <button
+                  onClick={() => setIsSettingsVisible(!isSettingsVisible)}
+                  className="control-button"
+                >
+                  <FaCog />
+                </button>
+                {isSettingsVisible && (
+                  <ul className="quality-menu">
+                    <li
+                      className={currentQuality === -1 ? "active" : ""}
+                      onClick={() => handleQualityChange(-1)}
+                    >
+                      Auto
+                    </li>
+                    {bitrates.map((quality, index) => (
+                      <li
+                        key={quality}
+                        className={currentQuality === index ? "active" : ""}
+                        onClick={() => handleQualityChange(index)}
+                      >
+                        {quality}p
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            )}
+            <button onClick={toggleFullscreen} className="control-button">
+              {isFullscreen ? <FaCompress /> : <FaExpand />}
+            </button>
+          </div>
         </div>
       </div>
     </div>
